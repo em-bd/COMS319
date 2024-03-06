@@ -1,10 +1,27 @@
 {
     "vehicles" : [
         {
+            "src" : "",
+            "name" : "",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+        },
+        {
             
         }
     ],
     "implements" : [
+        {
+
+        },
         {
 
         }
@@ -12,6 +29,9 @@
     "products" : [
         {
             
+        },
+        {
+
         }
     ]
 }
