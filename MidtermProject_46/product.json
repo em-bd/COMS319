@@ -28,7 +28,7 @@
     ],
     "products" : [
         {
-            "src" : "",
+            "src" : "https://images.thdstatic.com/productImages/ec033d95-02ef-4c13-bb64-ec9ca8e773f6/svn/miracle-gro-potting-soil-72781431-64_1000.jpg",
             "name" : "Potting Soil",
             "type" : "soil",
             "variations" : [
@@ -49,7 +49,7 @@
             "desc" : ""
         },
         {
-            "src" : "",
+            "src" : "https://mobileimages.lowes.com/productimages/8868c1b2-2b86-48d9-804b-d89b99b08524/09740321.jpg",
             "name" : "Mulch",
             "type" : "soil",
             "variations" : [
@@ -68,7 +68,7 @@
             "desc" : ""
         },
         {
-            "src" : "",
+            "src" : "https://previews.123rf.com/images/ivonnewierink/ivonnewierink1112/ivonnewierink111200188/11733003-brown-paper-bag-with-tulip-bulbs-isolated-over-white.jpg",
             "name" : "Tulip bulb",
             "type" : "seed",
             "variations" : [
