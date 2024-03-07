@@ -28,10 +28,62 @@
     ],
     "products" : [
         {
-            
+            "src" : "",
+            "name" : "Potting Soil",
+            "type" : "soil",
+            "variations" : [
+                "5 lbs",
+                "10 lbs",
+                "20 lbs",
+                "40 lbs"
+            ],
+            "rating" : 0,
+            "numRatings" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : ""
         },
         {
+            "src" : "",
+            "name" : "Mulch",
+            "type" : "soil",
+            "variations" : [
+                "20 lbs",
+                "40 lbs"
+            ],
+            "rating" : 0,
+            "numRatings" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : ""
+        },
+        {
+            "src" : "",
+            "name" : "Tulip bulb",
+            "type" : "seed",
+            "variations" : [
+                "1 bulb",
+                "10 bulbs",
+                "20 bulbs",
+                "40 bulbs"
+            ],
+            "rating" : 0,
+            "numRatings" : 0,
+            "comments" : [
 
+            ],
+            "price" : 0,
+            "desc" : ""
         }
     ]
 }
