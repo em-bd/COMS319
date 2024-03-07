@@ -4,9 +4,7 @@
 
 function loadProducts(myProducts) {
     var maincontainer = document.getElementById("product");
-    for (let p in myProducts) {
-        // do something
-    }
+    // do something
 }
 
 // find a way to pass/fetch which was the previous page and what product was selected
