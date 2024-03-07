@@ -100,26 +100,23 @@
 
 <body class="d-flex h-100 text-center text-bg-dark">
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-        <div>
-            <h3 class="float-md-start mb-0">FarmersRUs</h3>
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-0" href="./index.html">Home</a>
-                <a class="nav-link fw-bold py-1 px-0" href="./vehicles.html">Vehicles</a>
-                <a class="nav-link fw-bold py-1 px-0" href="./implements.html">Implements</a>
-                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Products</a>
-                <a class="nav-link fw-bold py-1 px-0" href="./about.html">About Us</a>
-            </nav>
-        </div>
+  <div class="container-fluid d-flex p-3 flex-column">
+    <div class="cover-container w-100 mx-auto">
+    <header>
+      <div>
+        <h3 class="float-md-start mb-0">FarmersRUs</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link fw-bold py-1 px-0" href="./index.html">Home</a>
+          <a class="nav-link fw-bold py-1 px-0" href="./vehicles.html">Vehicles</a>
+          <a class="nav-link fw-bold py-1 px-0" href="./implements.html">Implements</a>
+          <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Products</a>
+          <a class="nav-link fw-bold py-1 px-0" href="./about.html">About Us</a>
+        </nav>
+      </div>
     </header>
-
     </div>
-  
 
-  <main class="d-flex flex-nowrap">
-    <!-- Set up sidebars and use maybe the album example for displaying each implement -->
-    <div class="flex-shrink-0 p-3 position-absolute top-50 start-0 translate-middle-y" style="width: 280px;">
+    <div class="sidebar-nav flex-shrink-0 p-3">
       <span class="fs-5 fw-semibold">Filters</span>
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
@@ -129,27 +126,27 @@
           </button>
           <div class="collapse" id="types-collapse">
             <div class="d-flex flex-column flex-md-row py-md-5 align-items-center justify-content-center">
-                <div class="list-group">
-                  <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked>
-                    <span>
-                      Seeds
-                    </span>
-                  </label>
-                  <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
-                    <span>
-                      Soil
-                    </span>
-                  </label>
-                  <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
-                    <span>
-                      Materials
-                    </span>
-                  </label>
-                </div>
-        </div>
+              <div class="list-group">
+                <label class="list-group-item d-flex gap-2">
+                  <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked>
+                  <span>
+                    Seeds
+                  </span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                  <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                  <span>
+                    Soil
+                  </span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                  <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                  <span>
+                    Materials
+                  </span>
+                </label>
+              </div>
+            </div>
         </li>
         <li class="mb-1">
           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -184,7 +181,12 @@
       </ul>
       <!-- button here -->
     </div>
-  </main>
+
+  </div>
+
+
+  <!-- Set up sidebars and use maybe the album example for displaying each implement -->
+
 
   <script src="./sidebars.js"></script>
   <script src="./products.js"></script>
