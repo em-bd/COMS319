@@ -103,7 +103,7 @@ function filterQuery() {
   if (i == 0) {
     fetch("./product.json")
     .then(response => response.json())
-    .then(myProducts => loadProducts(myProducts));
+    .then(myProducts => loadImplements(myProducts));
   }
 
   const productTab = document.getElementById("col");

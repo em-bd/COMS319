@@ -3,6 +3,8 @@
         {
             "src" : "https://cdn.pixabay.com/photo/2018/05/02/20/36/fendt-3369617_1280.jpg",
             "name" : "Fendt",
+            "type" : "tractor",
+            "color" : "green",
             "rating" : 0,
             "comments" : [
                 {
@@ -17,6 +19,8 @@
         {
             "src" : "https://cdn.pixabay.com/photo/2016/11/10/21/29/tractor-1815232_1280.jpg",
             "name" : "John Deere",
+            "type" : "tractor",
+            "color" : "green",
             "rating" : 0,
             "comments" : [
                 {
@@ -32,6 +36,8 @@
         {
             "src" : "https://cdn.pixabay.com/photo/2017/03/13/07/38/combine-harvester-2138997_1280.jpg",
             "name" : "CLAAS",
+            "type" : "harvester",
+            "color" : "green",
             "rating" : 0,
             "comments" : [
                 {
@@ -47,6 +53,8 @@
         {
             "src" : "https://images.unsplash.com/photo-1614977645540-7abd88ba8e56?q=80&w=2573&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name" : "John Deere",
+            "type" : "tractor",
+            "color" : "green",
             "rating" : 0,
             "comments" : [
                 {
@@ -62,6 +70,8 @@
         {
             "src" : "https://images.unsplash.com/photo-1601593797922-325abb0f763d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name" : "McCormick Farmall",
+            "type" : "tractor",
+            "color" : "red",
             "rating" : 0,
             "comments" : [
                 {
