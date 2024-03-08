@@ -11,12 +11,19 @@ function loadProducts(myProducts) {
     srcPage = type
     var maincontainer = document.getElementById("product");
 
-    let displayHTML = document.getElementById("newDiv")
-
-    displayHTML.innerHTML = `
-    
-    <img src = "${src}">
-    <p> ${product + type} </p>
+    maincontainer.innerHTML = `
+    <button class = "bg-dark text-white" onclick="goBack()">Go Back</button>
+    <div class="row g-0">
+      <div class="col">
+        <img src="${src}" class="img-fluid rounded-start" alt="..." >
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title text-white">${product}</h5>
+          <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
     
     `
 
