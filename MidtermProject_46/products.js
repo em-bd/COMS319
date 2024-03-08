@@ -5,10 +5,11 @@
  * ISU Netid: emmieb@iastate.edu,
  *             craftsam@iastate.edu
  */
-
+var products
 function loadProducts(myProducts)   {
-    
-    var productTab = document.getElementById("col");
+    products = myProducts
+
+    var productTab = document.getElementById("col")
 
     productTab.innerHTML = "";
 
@@ -22,19 +23,27 @@ function loadProducts(myProducts)   {
         addProductTab.classList.add("col");
 
         addProductTab.innerHTML = `
-        <div class="card text-bg-dark">
+        <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
-          </div>
-          `;
-        productTab.appendChild(addProductTab);
+          </button>
+          `
+        productTab.appendChild(addProductTab)
     }
 }
 
 fetch("./product.json")
     .then(response => response.json())
     .then(myProducts => loadProducts(myProducts));
+
+    function btnClick(clkID) {
+        localStorage.clear()
+        localStorage.setItem("name",products.products[clkID].name);
+        localStorage.setItem("src",products.products[clkID].src);
+        localStorage.setItem("type","products");
+        window.location.href = "display.html"
+    }

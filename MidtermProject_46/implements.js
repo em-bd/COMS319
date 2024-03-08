@@ -5,8 +5,10 @@
  * ISU Netid: emmieb@iastate.edu,
  *             craftsam@iastate.edu
  */
-
+var products
 function loadImplements(myProducts)   {
+    // load implements
+    products = myProducts;
     var productTab = document.getElementById("col");
 
     productTab.innerHTML = "";
@@ -21,14 +23,14 @@ function loadImplements(myProducts)   {
         addImplementTab.classList.add("col");
 
         addImplementTab.innerHTML = `
-        <div class="card text-bg-dark">
+        <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
-          </div>
+          </button>
           `;
         productTab.appendChild(addImplementTab);
     }
@@ -37,3 +39,11 @@ function loadImplements(myProducts)   {
 fetch("./product.json")
     .then(response => response.json())
     .then(myProducts => loadImplements(myProducts));
+
+    function btnClick(clkID) {
+        localStorage.clear();
+        localStorage.setItem("name",products.implements[clkID].name);
+        localStorage.setItem("src",products.implements[clkID].src);
+        localStorage.setItem("type","implements");
+        window.location.href = "display.html";
+    }
