@@ -34,7 +34,7 @@ function loadImplements(myProducts)   {
     }
 }
 
-fetch("./product.json")
+fetch("./data.json")
     .then(response => response.json())
     .then(myProducts => loadImplements(myProducts));
 
@@ -101,7 +101,7 @@ function filterQuery() {
 
   // just print all
   if (i == 0) {
-    fetch("./product.json")
+    fetch("./data.json")
     .then(response => response.json())
     .then(myProducts => loadImplements(myProducts));
   }
