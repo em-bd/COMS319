@@ -1,13 +1,12 @@
 /**
- * Authors:Em Bradley-DeHaan
+ * Authors : Em Bradley-DeHaan
  *         Samuel Craft
- * Created: February 27th, 2024
- * ISU Netid: emmieb@iastate.edu,
- *             craftsam@iastate.edu
+ * Created : February 27th, 2024
+ * ISU Netid : emmieb@iastate.edu,
+ *            craftsam@iastate.edu
  */
 var products
 function loadVehicles(myProducts)   {
-    //TODO: load vehicles
     products = myProducts
     var vehicleTab = document.getElementById("col")
 
@@ -18,13 +17,11 @@ function loadVehicles(myProducts)   {
         source = myProducts.vehicles[i].src;
         name = myProducts.vehicles[i].name;
 
-        let addvehicleTab = document.createElement("div")
+        let addvehicleTab = document.createElement("div");
 
-        addvehicleTab.classList.add("col")
+        addvehicleTab.classList.add("col");
 
         addvehicleTab.innerHTML = `
-
-
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
@@ -36,8 +33,6 @@ function loadVehicles(myProducts)   {
           `
         vehicleTab.appendChild(addvehicleTab)
     }
-
-
 }
 
 

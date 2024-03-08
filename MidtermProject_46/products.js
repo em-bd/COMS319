@@ -11,20 +11,18 @@ function loadProducts(myProducts)   {
 
     var productTab = document.getElementById("col")
 
-    productTab.innerHTML = ""
+    productTab.innerHTML = "";
 
     for (let i = 0; i < myProducts.products.length; i++) {
         
         let source = myProducts.products[i].src;
         let name = myProducts.products[i].name;
 
-        let addProductTab = document.createElement("div")
+        let addProductTab = document.createElement("div");
 
-        addProductTab.classList.add("col")
+        addProductTab.classList.add("col");
 
         addProductTab.innerHTML = `
-
-
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">

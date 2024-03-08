@@ -1,5 +1,9 @@
 /**
- * 
+ * Authors : Em Bradley-DeHaan,
+ *           Samuel Craft
+ * Created : March 4th, 2024
+ * ISU NetIDs : emmieb@iastate.edu,
+ *              craftsam@iastate.edu
  */
 
 // side bar collapsable
@@ -35,4 +39,11 @@ sliderEl1.addEventListener("input", (event1) => {
   const progress1 = (tempSliderValue1 / sliderEl1.max) * 100;
 
   sliderEl1.style.background = `linear-gradient(to right, #d3d3d3 ${progress1}%, #04AA6D ${progress1}%)`;
+});
+
+// filter button:
+const filterQuery = document.querySelector(".btn-filter");
+
+filterQuery.addEventListener("click", (event2) => {
+
 });

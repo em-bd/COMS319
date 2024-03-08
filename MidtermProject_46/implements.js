@@ -8,23 +8,21 @@
 var products
 function loadImplements(myProducts)   {
     // load implements
-    products = myProducts
-    var productTab = document.getElementById("col")
+    products = myProducts;
+    var productTab = document.getElementById("col");
 
-    productTab.innerHTML = ""
+    productTab.innerHTML = "";
 
     for (let i = 0; i < myProducts.implements.length; i++) {
         
         let source = myProducts.implements[i].src;
         let name = myProducts.implements[i].name;
 
-        let addImplementTab = document.createElement("div")
+        let addImplementTab = document.createElement("div");
 
-        addImplementTab.classList.add("col")
+        addImplementTab.classList.add("col");
 
         addImplementTab.innerHTML = `
-
-
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
@@ -33,8 +31,8 @@ function loadImplements(myProducts)   {
               </div>
             </div>
           </button>
-          `
-        productTab.appendChild(addImplementTab)
+          `;
+        productTab.appendChild(addImplementTab);
     }
 }
 
@@ -43,9 +41,9 @@ fetch("./product.json")
     .then(myProducts => loadImplements(myProducts));
 
     function btnClick(clkID) {
-        localStorage.clear()
+        localStorage.clear();
         localStorage.setItem("name",products.implements[clkID].name);
         localStorage.setItem("src",products.implements[clkID].src);
         localStorage.setItem("type","implements");
-        window.location.href = "display.html"
+        window.location.href = "display.html";
     }
