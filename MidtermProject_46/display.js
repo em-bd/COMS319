@@ -20,7 +20,7 @@ function loadProducts(myProducts) {
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title text-white">${product}</h5>
-          <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text text-white">Space left blank for future content that will be added for the final project.</p>
         </div>
       </div>
     </div>

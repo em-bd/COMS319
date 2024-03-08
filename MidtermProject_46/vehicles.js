@@ -45,8 +45,8 @@ fetch("./product.json")
 
     function btnClick(clkID) {
         localStorage.clear()
-        localStorage.setItem("name",products.vehicles[clkID].name);
-        localStorage.setItem("src",products.vehicles[clkID].src);
+        localStorage.setItem("name",products[clkID].name);
+        localStorage.setItem("src",products[clkID].src);
         localStorage.setItem("type","vehicles");
         window.location.href = "display.html"
     }

@@ -83,13 +83,30 @@
             "desc" : "",
             "specs" : ""
             
+        },
+        {
+            "src" : "https://images.unsplash.com/photo-1606041974734-0341c2d2d988?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "John Deere Harvester",
+            "type" : "harvester",
+            "color" : "green",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+            
         }
         
     ],
     "implements" : [
         {
-            "src" : "https://blog.machinefinder.com/wp-content/uploads/2022/02/db120_48r30_planter_r4d031295_large_320e8d2ec1700e232bafa9054a6eef3974ef4f02.jpeg",
-            "name" : "JD Planter",
+            "src" : "https://images.unsplash.com/photo-1595702852378-f9c79111413f?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "John Deere Planter",
             "rating" : 0,
             "comments" : [
                 {
@@ -116,12 +133,72 @@
             "desc" : "",
             "specs" : ""
 
+        },
+        {
+            "src" : "https://plus.unsplash.com/premium_photo-1661934039679-9c893f091ddd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "Cultivator",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+
+        },
+        {
+            "src" : "https://plus.unsplash.com/premium_photo-1661962971074-1554649d40d5?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "Sprayer",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+
+        },
+        {
+            "src" : "https://images.unsplash.com/photo-1527847263472-aa5338d178b8?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "Baler",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+
+        },
+        {
+            "src" : "https://plus.unsplash.com/premium_photo-1661849201240-a0d3bdea40d8?q=80&w=2685&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "Spreader",
+            "rating" : 0,
+            "comments" : [
+                {
+                    "body" : "",
+                    "user" : ""
+                }
+            ],
+            "price" : 0,
+            "desc" : "",
+            "specs" : ""
+
         }
         
     ],
     "products" : [
         {
-            "src" : "https://images.thdstatic.com/productImages/ec033d95-02ef-4c13-bb64-ec9ca8e773f6/svn/miracle-gro-potting-soil-72781431-64_1000.jpg",
+            "src" : "https://images.unsplash.com/photo-1613036582025-ba1d4ccb3226?q=80&w=2535&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name" : "Potting Soil",
             "type" : "soil",
             "season" : "all",
@@ -143,7 +220,7 @@
             "desc" : ""
         },
         {
-            "src" : "https://mobileimages.lowes.com/productimages/8868c1b2-2b86-48d9-804b-d89b99b08524/09740321.jpg",
+            "src" : "https://images.unsplash.com/photo-1589562760889-38898c71d3d8?q=80&w=2436&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name" : "Mulch",
             "type" : "soil",
             "season" : "all",
@@ -163,7 +240,7 @@
             "desc" : ""
         },
         {
-            "src" : "https://previews.123rf.com/images/ivonnewierink/ivonnewierink1112/ivonnewierink111200188/11733003-brown-paper-bag-with-tulip-bulbs-isolated-over-white.jpg",
+            "src" : "https://images.unsplash.com/photo-1557804950-901398de43ba?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name" : "Tulip bulb",
             "type" : "seed",
             "season" : "spring",
@@ -172,6 +249,44 @@
                 "10 bulbs",
                 "20 bulbs",
                 "40 bulbs"
+            ],
+            "rating" : 0,
+            "numRatings" : 0,
+            "comments" : [
+
+            ],
+            "price" : 0,
+            "desc" : ""
+        },
+        {
+            "src" : "https://plus.unsplash.com/premium_photo-1682148079965-2a80a9acd8ac?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name" : "Seeds",
+            "type" : "seed",
+            "season" : "spring",
+            "variations" : [
+                "1 pound",
+                "10 pounds",
+                "20 pounds",
+                "40 pounds"
+            ],
+            "rating" : 0,
+            "numRatings" : 0,
+            "comments" : [
+
+            ],
+            "price" : 0,
+            "desc" : ""
+        },
+        {
+            "src" : "https://images.pexels.com/photos/12925598/pexels-photo-12925598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            "name" : "Fertilizer",
+            "type" : "mineral",
+            "season" : "all",
+            "variations" : [
+                "1 pound",
+                "10 pounds",
+                "20 pounds",
+                "40 pounds"
             ],
             "rating" : 0,
             "numRatings" : 0,
