@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <script src="../assets/js/color-modes.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FarmersRUs · Vehicles</title>
@@ -15,7 +13,6 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -133,25 +130,25 @@
                 style="padding-top : 20px; padding-bottom : 20px;">
                 <div class="list-group">
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="tractor" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
                     <span>
                       Tractors
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="harvester" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
                     <span>
                       Combine Harvesters
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="seeder" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
                     <span>
                       Seeders
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="baler" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
                     <span>
                       Balers
                     </span>
@@ -169,19 +166,19 @@
                 style="padding-top : 20px; padding-bottom : 20px;">
                 <div class="list-group">
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="green" class="form-check-input flex-shrink-0" name="color" type="checkbox" value="">
                     <span>
                       Green
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="blue" class="form-check-input flex-shrink-0" name="color" type="checkbox" value="">
                     <span>
                       Blue
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <input id="red" class="form-check-input flex-shrink-0" name="color" type="checkbox" value="">
                     <span>
                       Red
                     </span>
@@ -224,11 +221,9 @@
         </div>
       </div>
     </div>
-
   </div>
 
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./sidebars.js"></script>
   <script src="./vehicles.js"></script>
 </body>
