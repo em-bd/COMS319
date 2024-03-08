@@ -13,8 +13,8 @@ function loadImplements(myProducts)   {
 
     for (let i = 0; i < myProducts.implements.length; i++) {
         
-        let source = myProducts.implements[i].src;
-        let name = myProducts.implements[i].name;
+        let source = products[i].src;
+        let name = products[i].name;
 
         let addImplementTab = document.createElement("div");
 
@@ -22,7 +22,7 @@ function loadImplements(myProducts)   {
 
         addImplementTab.innerHTML = `
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
-           <img src = ${source} class = "card-img-top" alt = "..."></img>
+           <img src = ${source} class = "card-img-top card-img-bottom" alt = "${products[i].alt}"></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
@@ -126,7 +126,7 @@ function filterQuery() {
       addProductTab.classList.add("col");
       addProductTab.innerHTML = `
       <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i++}">
-      <img src = ${products[p].src} class = "card-img-top" alt = "..."></img>
+      <img src = ${products[p].src} class = "card-img-top card-img-bottom" alt = "${products[p].alt}"></img>
        <div class="card-body">
          <p class="card-text"><strong>${products[p].name}</strong></p>
          <div class="d-flex justify-content-between align-items-center">

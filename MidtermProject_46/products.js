@@ -13,10 +13,10 @@ function loadProducts(myProducts) {
 
   productTab.innerHTML = "";
 
-  for (let i = 0; i < myProducts.products.length; i++) {
+  for (let i = 0; i < products.length; i++) {
 
-    let source = myProducts.products[i].src;
-    let name = myProducts.products[i].name;
+    let source = products[i].src;
+    let name = products[i].name;
 
     let addProductTab = document.createElement("div");
 
@@ -24,7 +24,7 @@ function loadProducts(myProducts) {
 
     addProductTab.innerHTML = `
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
-           <img src = ${source} class = "card-img-top" alt = "..."></img>
+           <img src = ${source} class = "card-img-top card-img-bottom" alt = "${products[i].alt}"></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
@@ -128,7 +128,7 @@ function filterQuery() {
       addProductTab.classList.add("col");
       addProductTab.innerHTML = `
       <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i++}">
-      <img src = ${products[p].src} class = "card-img-top" alt = "..."></img>
+      <img src = ${products[p].src} class = "card-img-top card-img-bottom" alt = "${products[i].alt}"></img>
        <div class="card-body">
          <p class="card-text"><strong>${products[p].name}</strong></p>
          <div class="d-flex justify-content-between align-items-center">

@@ -14,8 +14,8 @@ function loadVehicles(myProducts)   {
 
     for (let i = 0; i < myProducts.vehicles.length; i++) {
         
-        source = myProducts.vehicles[i].src;
-        name = myProducts.vehicles[i].name;
+        source = products[i].src;
+        name = products[i].name;
 
         let addvehicleTab = document.createElement("div");
 
@@ -23,7 +23,7 @@ function loadVehicles(myProducts)   {
 
         addvehicleTab.innerHTML = `
         <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
-           <img src = ${source} class = "card-img-top" alt = "..."></img>
+           <img src = ${source} class = "card-img-top card-img-bottom" alt = "${products[i].alt}"></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
@@ -131,7 +131,7 @@ function filterQuery() {
       addProductTab.classList.add("col");
       addProductTab.innerHTML = `
       <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i++}">
-      <img src = ${products[p].src} class = "card-img-top" alt = "..."></img>
+      <img src = ${products[p].src} class = "card-img-top card-img-bottom" alt = "${products[p].alt}"></img>
        <div class="card-body">
          <p class="card-text"><strong>${products[p].name}</strong></p>
          <div class="d-flex justify-content-between align-items-center">
