@@ -5,9 +5,10 @@
  * ISU Netid: emmieb@iastate.edu,
  *             craftsam@iastate.edu
  */
-
+var products
 function loadProducts(myProducts)   {
-    
+    products = myProducts
+
     var productTab = document.getElementById("col")
 
     productTab.innerHTML = ""
@@ -24,14 +25,14 @@ function loadProducts(myProducts)   {
         addProductTab.innerHTML = `
 
 
-        <div class="card text-bg-dark">
+        <button class="card text-bg-dark" onclick="btnClick(this.id)" id = "${i}">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
               <p class="card-text"><strong>${name}</strong></p>
               <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
-          </div>
+          </button>
           `
         productTab.appendChild(addProductTab)
     }
@@ -40,3 +41,11 @@ function loadProducts(myProducts)   {
 fetch("./product.json")
     .then(response => response.json())
     .then(myProducts => loadProducts(myProducts));
+
+    function btnClick(clkID) {
+        localStorage.clear()
+        localStorage.setItem("name",products.products[clkID].name);
+        localStorage.setItem("src",products.products[clkID].src);
+        localStorage.setItem("type","products");
+        window.location.href = "display.html"
+    }
