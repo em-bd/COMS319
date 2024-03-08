@@ -98,94 +98,113 @@
 
 </head>
 
-<body class="d-flex h-100 text-bg-dark">
+<body id="bootstrap-overrides" class="d-flex h-100 text-bg-dark">
 
   <div class="container-fluid d-flex p-3 flex-column">
     <div class="cover-container w-100 text-center mx-auto">
-    <header>
-      <div>
-        <h3 class="float-md-start mb-0">FarmersRUs</h3>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link fw-bold py-1 px-0" href="./index.html">Home</a>
-          <a class="nav-link fw-bold py-1 px-0" href="./vehicles.html">Vehicles</a>
-          <a class="nav-link fw-bold py-1 px-0" href="./implements.html">Implements</a>
-          <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Products</a>
-          <a class="nav-link fw-bold py-1 px-0" href="./about.html">About Us</a>
-        </nav>
-      </div>
-    </header>
+      <header>
+        <div>
+          <h3 class="float-md-start mb-0">FarmersRUs</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-0" href="./index.html">Home</a>
+            <a class="nav-link fw-bold py-1 px-0" href="./vehicles.html">Vehicles</a>
+            <a class="nav-link fw-bold py-1 px-0" href="./implements.html">Implements</a>
+            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Products</a>
+            <a class="nav-link fw-bold py-1 px-0" href="./about.html">About Us</a>
+          </nav>
+        </div>
+      </header>
     </div>
 
-    <div class="sidebar-nav flex-shrink-0">
-      <span class="fs-5 fw-semibold">Filters</span>
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#type-collapse" aria-expanded="false">
-            Type
-          </button>
-          <div class="collapse" id="types-collapse">
-            <div class="d-flex flex-column flex-md-row py-md-5 align-items-center justify-content-center">
-              <div class="list-group">
-                <label class="list-group-item d-flex gap-2">
-                  <input class="form-check-input flex-shrink-0" type="checkbox" value="">
-                  <span>
-                    Seeds
-                  </span>
-                </label>
-                <label class="list-group-item d-flex gap-2">
-                  <input class="form-check-input flex-shrink-0" type="checkbox" value="">
-                  <span>
-                    Soil
-                  </span>
-                </label>
-                <label class="list-group-item d-flex gap-2">
-                  <input class="form-check-input flex-shrink-0" type="checkbox" value="">
-                  <span>
-                    Materials
-                  </span>
-                </label>
+    <div class="container-fluid d-flex flex-row" style="padding-top : 10px;">
+      <div class="sidebar-nav flex-column">
+        <span class="fs-5 fw-semibold">Filters</span>
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#type-collapse" aria-expanded="false">
+              Type
+            </button>
+            <div class="collapse" id="type-collapse">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <div class="list-group" style="padding-top : 20px; padding-bottom : 20px;">
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Seeds
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Soil
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Materials
+                    </span>
+                  </label>
+                </div>
               </div>
             </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-            Orders
-          </button>
-          <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a></li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
-              </li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
-              </li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
-            Price Range
-          </button>
-          <div class="collapse" id="price-collapse">
-            <div class="slide-container">
-              <input type="range" min="0" max="200" value="0" class="slider" id="pricerangeslider">
-              <div class="pricevalue">0</div>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#seasonal-collapse" aria-expanded="false">
+              Seasonal
+            </button>
+            <div class="collapse" id="seasonal-collapse">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <div class="list-group" style="padding-top : 20px; padding-bottom : 20px;">
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Summer
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Spring
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Fall
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-      <!-- button here -->
+          </li>
+          <li class="border-top my-3"></li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
+              Price Range
+            </button>
+            <div class="collapse" id="price-collapse">
+              <div class="slide-container">
+                <input type="range" min="0" max="200" value="0" class="minslider" id="minpricerangeslider">
+                <div class="minpricevalue">0</div>
+              </div>
+              <div class="slide-container">
+                <input type="range" min="0" max="200" value="200" class="maxslider" id="maxpricerangeslider">
+                <div class="maxpricevalue">200</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <button>
+          Apply Filters
+        </button>
+      </div>
     </div>
 
   </div>
-
-
-  <!-- Set up sidebars and use maybe the album example for displaying each implement -->
 
 
   <script src="./sidebars.js"></script>
