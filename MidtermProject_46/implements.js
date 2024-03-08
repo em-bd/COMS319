@@ -7,24 +7,20 @@
  */
 
 function loadImplements(myProducts)   {
-    // load implements
+    var productTab = document.getElementById("col");
 
-    var productTab = document.getElementById("col")
-
-    productTab.innerHTML = ""
+    productTab.innerHTML = "";
 
     for (let i = 0; i < myProducts.implements.length; i++) {
         
         let source = myProducts.implements[i].src;
         let name = myProducts.implements[i].name;
 
-        let addImplementTab = document.createElement("div")
+        let addImplementTab = document.createElement("div");
 
-        addImplementTab.classList.add("col")
+        addImplementTab.classList.add("col");
 
         addImplementTab.innerHTML = `
-
-
         <div class="card text-bg-dark">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
@@ -33,8 +29,8 @@ function loadImplements(myProducts)   {
               </div>
             </div>
           </div>
-          `
-        productTab.appendChild(addImplementTab)
+          `;
+        productTab.appendChild(addImplementTab);
     }
 }
 

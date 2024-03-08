@@ -120,7 +120,7 @@
     </div>
 
     <div class="d-flex mt-5 m-auto">
-      <div class="sidebar-nav flex-shrink-0">
+      <div class="sidebar-nav flex-shrink-0" style="padding-right : 10px;">
         <span class="fs-5 fw-semibold">Filters</span>
         <ul class="list-unstyled ps-0">
           <li class="mb-1">
@@ -129,7 +129,8 @@
               Type
             </button>
             <div class="collapse" id="type-collapse">
-              <div class="d-flex flex-column flex-md-row py-md-5 align-items-center justify-content-center">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                style="padding-top : 20px; padding-bottom : 20px;">
                 <div class="list-group">
                   <label class="list-group-item d-flex gap-2">
                     <input class="form-check-input flex-shrink-0" type="checkbox" value="">
@@ -160,48 +161,65 @@
           </li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-              data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-              Orders
+              data-bs-toggle="collapse" data-bs-target="#-collapse" aria-expanded="false">
+              Color
             </button>
-            <div class="collapse" id="orders-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a></li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
-                </li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
-                </li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
-                </li>
-              </ul>
+            <div class="collapse" id="-collapse">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                style="padding-top : 20px; padding-bottom : 20px;">
+                <div class="list-group">
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Green
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Blue
+                    </span>
+                  </label>
+                  <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="">
+                    <span>
+                      Red
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
           </li>
+
           <li class="border-top my-3"></li>
+
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
               Price Range
             </button>
             <div class="collapse" id="price-collapse">
-              <div class="slide-container">
-                <input type="range" min="0" max="200" value="0" class="minslider" id="minpricerangeslider">
-                <div class="minpricevalue">0</div>
-              </div>
-              <div class="slide-container">
-                <input type="range" min="0" max="200" value="200" class="maxslider" id="maxpricerangeslider">
-                <div class="maxpricevalue">200</div>
+              <div style="padding-top : 20px; padding-bottom: 20px;">
+                <div class="slide-container">
+                  <input type="range" min="0" max="200" value="0" class="minslider" id="minpricerangeslider">
+                  <div class="minpricevalue">0</div>
+                </div>
+                <div class="slide-container">
+                  <input type="range" min="0" max="200" value="200" class="maxslider" id="maxpricerangeslider">
+                  <div class="maxpricevalue">200</div>
+                </div>
               </div>
             </div>
           </li>
         </ul>
-        <button class="">
+        <button class="btn-filter">
           Apply Filters
         </button>
       </div>
 
-      <div class="album py-5 bg-secondary">
-        <div class="container">
+      <div class="album py-5">
+        <div class="container mx-auto">
           <div id="col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-
           </div>
         </div>
       </div>

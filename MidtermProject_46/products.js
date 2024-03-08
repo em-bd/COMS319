@@ -8,22 +8,20 @@
 
 function loadProducts(myProducts)   {
     
-    var productTab = document.getElementById("col")
+    var productTab = document.getElementById("col");
 
-    productTab.innerHTML = ""
+    productTab.innerHTML = "";
 
     for (let i = 0; i < myProducts.products.length; i++) {
         
         let source = myProducts.products[i].src;
         let name = myProducts.products[i].name;
 
-        let addProductTab = document.createElement("div")
+        let addProductTab = document.createElement("div");
 
-        addProductTab.classList.add("col")
+        addProductTab.classList.add("col");
 
         addProductTab.innerHTML = `
-
-
         <div class="card text-bg-dark">
            <img src = ${source} class = "card-img-top" alt = "..."></img>
             <div class="card-body">
@@ -32,8 +30,8 @@ function loadProducts(myProducts)   {
               </div>
             </div>
           </div>
-          `
-        productTab.appendChild(addProductTab)
+          `;
+        productTab.appendChild(addProductTab);
     }
 }
 
