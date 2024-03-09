@@ -35,7 +35,7 @@ function loadProducts(myProducts) {
 // find a way to pass/fetch which was the previous page and what product was selected
 
 
-fetch("./product.json")
+fetch("./data.json")
 .then(response => response.json())
 .then(myProducts => loadProducts(myProducts));
 
