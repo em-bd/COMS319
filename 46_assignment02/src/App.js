@@ -15,49 +15,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import items from "./products.json";
 
 
-
-// app rendering:
-function App() {
-  // browse:
-  // product filtering useState:
-  const [ProductsCategory, setProductsCategory] = useState(items);
-  // search query useState:
-  const [query, setQuery] = useState('');
-  // shopping cart:
-  const [cart, setCart] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
-  // order summary:
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [dataF,setDataF] = useState({});
-
-  const [viewer,setViewer] = useState(0);
-
-    // add to cart:
-    const addToCart = (el) => {
-      setCart([...cart, el]);
-    }
-  
-    // remove from cart:
-    const removeFromCart = (el) => {
-      let itemFound = false;
-      const updatedCart = cart.filter((cartItem) => {
-          if (cartItem.id === el.id && !itemFound) {
-              itemFound = true;
-              return false;
-          }
-          return true;
-      });
-      if (itemFound)
-        setCart(updatedCart);
-    }
-
-  // browse items:
-  function Browse() {
-
-    const updateHooks = () => {
-      setViewer(1);
-    }
-
     // product rendering:
     const render_products = (ProductsCategory) => {
       return (<div className="category-section fixed">    
@@ -91,6 +48,49 @@ function App() {
       </div>);
     }
 
+
+// app rendering:
+function App() {
+  // browse:
+  const [ProductsCategory, setProductsCategory] = useState(items);
+  const [query, setQuery] = useState('');
+  // shopping cart:
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  // order summary:
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [dataF,setDataF] = useState({});
+  // determine view mode:
+  const [viewer,setViewer] = useState(0);
+
+  // add to cart:
+  const addToCart = (el) => {
+    setCart([...cart, el]);
+  }
+  
+  // remove from cart:
+  const removeFromCart = (el) => {
+    let itemFound = false;
+    const updatedCart = cart.filter((cartItem) => {
+        if (cartItem.id === el.id && !itemFound) {
+            itemFound = true;
+            return false;
+        }
+        return true;
+    });
+    if (itemFound)
+      setCart(updatedCart);
+  }
+
+
+  // browse items:
+  function Browse() {
+
+    // update react hooks:
+    const updateHooks = () => {
+      setViewer(1); // go to cart page
+    }
+
     // search even handler:
     const handleChange = (e) => {
       setQuery(e.target.value);
@@ -101,7 +101,7 @@ function App() {
       setProductsCategory(results);
     }
 
-
+    // render page:
     return (
     <div>
       <nav class="navbar fixed navbar-expand-md navbar-light bg-white shadow py-2">
@@ -133,7 +133,7 @@ function App() {
     }
   
     // show selected products:
-    const listItems = items.map((el) => (
+    const listItems = cart.map((el) => (
         <div class="row border-top border-bottom" key={el.id}>
             <div class="row main align-items-center">
                 <div class="col-2">
@@ -141,14 +141,13 @@ function App() {
                 </div>
                 <div class="col">
                     <div class="row text-muted">{el.title}</div>
-                    <div class="row">{el.category}</div>
                 </div>
                 <div class="col">
                     <button type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
                     <button type="button" variant="light" onClick={() => addToCart(el)}> + </button>
                 </div>
                 <div class="col">
-                    ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+                    ${el.price} <span class="close">&nbsp;&#10005;</span>{howManyofThis(el.id)}
                 </div>
             </div>
         </div>
