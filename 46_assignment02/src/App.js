@@ -127,12 +127,13 @@ function App() {
   // shopping cart and payment:
   function Cart() {
 
-    function renderCart(products) {
+    var foundCart = []
 
-      return (<div>
-
-      </div>);
-    }
+      for (let i of cart) {
+        if(!foundCart.includes(i)) {
+            foundCart.push(i);           
+        }
+      }
 
     // count how many products of the same id:
     function howManyofThis(id) {
@@ -141,7 +142,10 @@ function App() {
     }
   
     // show selected products:
-    const listItems = cart.map((el) => (
+    
+
+
+      const listItems = foundCart.map((el) => (
         <div class="row border-top border-bottom" key={el.id}>
             <div class="row main align-items-center">
                 <div class="col-2">
@@ -151,15 +155,17 @@ function App() {
                     <div class="row text-muted">{el.title}</div>
                 </div>
                 <div class="col">
-                    <button type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-                    <button type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-" onClick={() => removeFromCart(el)} > - </button>{" "}
+                    <button type="button" class="btn btn-outline-success" onClick={() => addToCart(el)}> + </button>
+                </div>
                 </div>
                 <div class="col">
                     ${el.price} <span class="close">&nbsp;&#10005;</span>{howManyofThis(el.id)}
                 </div>
             </div>
         </div>
-    ));
+      ));
   
     const cartItems = cart.map((el) => (
         <div key={el.id}>
@@ -216,13 +222,12 @@ function App() {
                                 </div>
                             </div>
                         </div>
-  
                         <div>{listItems}</div>
                     </div>
                     <div class="float-end">
                         <p class="mb-0 me-5 d-flex align-items-center">
                             <span class="small text-muted me-2">Order total:</span>
-                            <span class="lead fw-normal">{cartTotal}</span>
+                            <span class="lead fw-normal">{cartTotal.toFixed(2)}</span>
                         </p>
                     </div>
                 </div>
