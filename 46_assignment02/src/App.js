@@ -166,7 +166,7 @@ function App() {
                 </div>
                 <div class="col">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-outline-" onClick={() => removeFromCart(el)} > - </button>{" "}
+                    <button type="button" class="btn btn-outline-danger" onClick={() => removeFromCart(el)} > - </button>{" "}
                     <button type="button" class="btn btn-outline-success" onClick={() => addToCart(el)}> + </button>
                 </div>
                 </div>
@@ -268,7 +268,7 @@ function App() {
 
           <div className="form-group">
             <input
-              {...register("creditCard", { required: true })}
+              {...register("creditCard", { required: true, minLength: 15 })}
               placeholder="Credit Card"
               className="form-control"
             />
@@ -311,7 +311,7 @@ function App() {
           </div>
           <div className="form-group">
             <input
-              {...register("zip", { required: true })}
+              {...register("zip", { required: true, minLength: 5, maxLength: 5 })}
               placeholder="Zip"
               className="form-control"
             />
