@@ -75,7 +75,7 @@ function App() {
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">Rating: {product.rating.rate}</p>
                       <button type="button" variant="light" onClick={() => removeFromCart(product)} > - </button>{" "}
-                      <button type="button" variant="light" onClick={() => addToCart(product)}> + </button>
+                      <button type="button" variant="dark" onClick={() => addToCart(product)}> + </button>
                     </div>
                     <p className="text-sm font-medium text-green-600">${product.price}</p>
                   </div>
@@ -171,22 +171,37 @@ function App() {
     useEffect(() => {
         total();
     }, [cart]);
+
+    const backToBrowse = () => {
+
+      setViewer(0);
+
+    }
+
+    const onSubmit = (data) => {
+      console.log(data); // log all data
+      console.log(data.fullName); // log only fullname
+      // update hooks
+      setDataF(data);
+      setViewer(2);
+    };
   
   
     // store rendering
     return (
         <div>
-            STORE SE/ComS319
+            
+            <nav class="navbar fixed navbar-expand-md navbar-light bg-white shadow py-2">
+                 <div className="container-fluid">
+                  <p>Shopping Cart</p>
+            <button type="button" class="btn btn-primary justify-content-end" onClick={backToBrowse}> Return </button>
+            </div>
+            </nav>
             <div class="card">
                 <div class="row">
                     <div class="col-md-8 cart">
                         <div class="title">
                             <div class="row">
-                                <div class="col">
-                                    <h4>
-                                        <b>319 Shopping Cart</b>
-                                    </h4>
-                                </div>
                                 <div class="col align-self-center text-right text-muted">
                                     Products selected {cart.length}
                                 </div>
@@ -203,6 +218,85 @@ function App() {
                     </div>
                 </div>
             </div>
+
+            <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
+          <div className="form-group">
+            <input
+              {...register("fullName", { required: true })}
+              placeholder="Full Name"
+              className="form-control"
+            />
+
+            {errors.fullName && (
+              <p className="text-danger">Full Name is required.</p>
+            )}
+          </div>
+
+          <div className="form-group">
+            <input
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+              placeholder="Email"
+              className="form-control"
+            />
+            {errors.email && <p className="text-danger">Email is required.</p>}
+          </div>
+
+          <div className="form-group">
+            <input
+              {...register("creditCard", { required: true })}
+              placeholder="Credit Card"
+              className="form-control"
+            />
+            {errors.creditCard && (
+              <p className="text-danger">Credit Card is required.</p>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("address", { required: true })}
+              placeholder="Address"
+              className="form-control"
+            />
+            {errors.address && (
+              <p className="text-danger">Address is required.</p>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("address2")}
+              placeholder="Address 2"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              {...register("city", { required: true })}
+              placeholder="City"
+              className="form-control"
+            />
+            {errors.city && <p className="text-danger">City is required.</p>}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("state", { required: true })}
+              placeholder="State"
+              className="form-control"
+            />
+            {errors.state && <p className="text-danger">State is required.</p>}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("zip", { required: true })}
+              placeholder="Zip"
+              className="form-control"
+            />
+            {errors.zip && <p className="text-danger">Zip is required.</p>}
+          </div>
+
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
         </div>
     );
   }
@@ -210,13 +304,16 @@ function App() {
 
   // order summary:
   function Confirmation() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [dataF,setDataF] = useState({});
 
     const updateHooks = () => {
       setViewer(0); // viewer is now on Browse
       setDataF({fullName : "", email : "", creditCard : "", address : "", city : "", state : "", zip : ""}); // data is now an empty object
     };
+
+    const backToCart = () => {
+      setViewer(1);
+
+    }
 
     // include a list of the items purchased as well
     return (<div>
@@ -227,6 +324,7 @@ function App() {
         <p>{dataF.address}</p>
         <p>{dataF.city},{dataF.state} {dataF.zip} </p>
         <button onClick={updateHooks} className="btn btn-secondary">Browse More</button>
+        <button onClick={backToCart} className="btn btn-primary">Back to Cart   </button>
     </div>);
 
   }
