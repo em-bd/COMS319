@@ -56,6 +56,11 @@ function App() {
 
   // browse items:
   function Browse() {
+
+    function howManyofThis(id) {
+      let hmot = cart.filter((cartItem) => cartItem.id === id);
+      return hmot.length;
+  }
         
     // product rendering:
     const render_products = (ProductsCategory) => {
@@ -79,13 +84,18 @@ function App() {
                         </a>
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">Rating: {product.rating.rate}</p>
+                      <div className='flex justify-between'>
                       <div class="btn-group">
                         <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(product)} > - </button>{" "}
                         <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(product)}> + </button>
-                      </div>
+                        </div>
+                          <p>{howManyofThis(product.id)}</p>
+                        </div> 
                     </div>
+                    
                     <p className="text-sm font-medium text-green-600">${product.price}</p>
                   </div>
+                  
                 </div>
               ))}
               </div>     
@@ -161,7 +171,7 @@ function App() {
                 </div>
                 </div>
                 <div class="col">
-                    ${el.price} <span class="close">&nbsp;&#10005;</span>{howManyofThis(el.id)}
+                    ${el.price} <span class="close">&nbsp;&#10005;</span> {howManyofThis(el.id)}
                 </div>
             </div>
         </div>
@@ -227,7 +237,7 @@ function App() {
                     <div class="float-end">
                         <p class="mb-0 me-5 d-flex align-items-center">
                             <span class="small text-muted me-2">Order total:</span>
-                            <span class="lead fw-normal">{cartTotal.toFixed(2)}</span>
+                            <span class="lead fw-normal">${cartTotal.toFixed(2)}</span>
                         </p>
                     </div>
                 </div>
@@ -319,6 +329,40 @@ function App() {
   // order summary:
   function Confirmation() {
 
+    var foundCart = []
+
+      for (let i of cart) {
+        if(!foundCart.includes(i)) {
+            foundCart.push(i);           
+        }
+      }
+
+    // count how many products of the same id:
+    function howManyofThis(id) {
+        let hmot = cart.filter((cartItem) => cartItem.id === id);
+        return hmot.length;
+    }
+  
+    // show selected products:
+    
+
+
+      const listItems = foundCart.map((el) => (
+        <div class="row border-top border-bottom" key={el.id}>
+            <div class="row main align-items-center">
+                <div class="col-2">
+                    <img class="img-fluid" src={el.image} />
+                </div>
+                <div class="col">
+                    <div class="row text-muted">{el.title}</div>
+                </div>
+                <div class="col">
+                    ${el.price} <span class="close">&nbsp;&#10005;</span>{howManyofThis(el.id)}
+                </div>
+            </div>
+        </div>
+      ));
+
     const updateHooks = () => {
       setViewer(0); // viewer is now on Browse
       setDataF({fullName : "", email : "", creditCard : "", address : "", city : "", state : "", zip : ""}); // data is now an empty object
@@ -336,7 +380,10 @@ function App() {
         <p>{dataF.email}</p>
         <p>{dataF.creditCard}</p>
         <p>{dataF.address}</p>
-        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
+        <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
+        <p>Total Cost: ${cartTotal.toFixed(2)}</p>
+        <p>Number of items: {cart.length}</p>
+        {listItems}
         <button onClick={updateHooks} className="btn btn-secondary">Browse More</button>
         <button onClick={backToCart} className="btn btn-primary">Back to Cart   </button>
     </div>);
