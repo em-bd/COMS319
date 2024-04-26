@@ -36,7 +36,9 @@ function App() {
   }, []);
 
   function getAllProducts() {
-    fetch("http://localhost:8081/products")
+    fetch("http://localhost:8081/products", {
+      method: "GET",
+      headers: { "content-type": "application/json" },})
       .then((response) => response.json())
       .then((data) => {
         console.log("Show Catalog of Products :");
@@ -60,7 +62,9 @@ function App() {
   function getOneProduct(id) {
     console.log(id);
     if (id >= 1 && id <= 20) {
-      fetch("http://localhost:8081/products/" + id)
+      fetch("http://localhost:8081/products/" + id, {
+        method: "GET",
+        headers: { "content-type": "application/json" },})
         .then((response) => response.json())
         .then((data) => {
           console.log("Show one product :", id);
