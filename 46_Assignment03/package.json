@@ -1,0 +1,27 @@
+{
+  "name": "46_assignment03",
+  "version": "1.0.0",
+  "description": "MERN Application Development",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo: \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "React",
+    "Nodejs",
+    "MERN"
+  ],
+  "author": "Em Bradley-DeHaan and Samuel Craft",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "react": "^18.2.0",
+    "request": "^2.88.2",
+    "tailwindcss": "^3.4.3"
+  }
+}
