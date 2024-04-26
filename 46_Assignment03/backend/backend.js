@@ -123,7 +123,7 @@ app.put("/products/:id", async (req, res) => {
  * POST request:
  * Will add a new product
  */
-app.post("/addProduct", async (req, res) => {
+app.post("/products", async (req, res) => {
     try {
         await client.connect();
         const values = Object.values(req.body);
