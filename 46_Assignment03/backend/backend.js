@@ -6,6 +6,8 @@
  * Date: April 27th, 2024
  */
 
+var id = 21;
+
 const { MongoClient } = require("mongodb");
 
 var express = require("express");
@@ -88,10 +90,26 @@ app.put("/updateProduct/:id", async (req, res) => {
 
         const updateData = {
             $set: {
-                // stuff
+                "id" : req.body.name,
+                "title" : req.body.title,
+                "price" : req.body.price,
+                "description" : req.body.description,
+                "category" : req.body.category,
+                "image" : req.body.image,
+                "rating" : req.body.rating
             }
-        }
+        };
 
+        const options = { };
+        const results = await db
+            .collection("fakestore_catalog")
+            .updateOne(query, updateData, options);
+
+        if (results.matchedCount === 0)
+            return res.status(404).send({ message : 'Robot not found' });
+
+        res.status(200);
+        res.send(results);
     } catch (error) {
         console.error("Error updating product price :", error);
         res.status(500).send({message : 'Internal Server Error'});
@@ -108,14 +126,15 @@ app.post("/addProduct", async (req, res) => {
         const values = Object.values(req.body);
 
         const newDocument = {
-            "id" : values[0],
-            "title" : values[1],
-            "price" : values[2],
-            "description" : values[3],
-            "category" : values[4],
-            "image" : values[5],
-            "rating" : values[6]
+            "id" : id,
+            "title" : values[0],
+            "price" : values[1],
+            "description" : values[2],
+            "category" : values[3],
+            "image" : values[4],
+            "rating" : values[5]
         };
+        id++;
 
         console.log(newDocument);
 
