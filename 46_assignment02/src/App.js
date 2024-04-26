@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /**
  * Authors: Em Bradley-DeHaan,
  *          Samuel Craft
@@ -48,9 +49,8 @@ function App() {
       setCart(updatedCart);
   }
 
-  function updateHooks(i, data) {
+  function updateHooks(i) {
     setViewer(i);
-    setDataF(data);
   }
 
 
@@ -70,8 +70,8 @@ function App() {
             <div key={index} className="group relative shadow-lg">
                   <div className="min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
                     <img
-                      alt="Product Image"
                       src={product.image}
+                      alt-text="Product Image"
                       className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                     />
                   </div>
@@ -121,7 +121,7 @@ function App() {
               focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700
               dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
               dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search" value={query} onChange={handleChange}/>
-            <button type="button" class="btn btn-primary justify-content-end" onClick={() => updateHooks(1, cart)}>
+            <button type="button" class="btn btn-primary justify-content-end" onClick={() => updateHooks(1)}>
                 <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-cart float-left align-middle">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
                 </svg>&nbsp;Cart </button>
@@ -166,7 +166,7 @@ function App() {
                 </div>
                 <div class="col">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-outline-" onClick={() => removeFromCart(el)} > - </button>{" "}
+                    <button type="button" class="btn btn-outline-danger" onClick={() => removeFromCart(el)} > - </button>{" "}
                     <button type="button" class="btn btn-outline-success" onClick={() => addToCart(el)}> + </button>
                 </div>
                 </div>
@@ -176,13 +176,6 @@ function App() {
             </div>
         </div>
       ));
-  
-    const cartItems = cart.map((el) => (
-        <div key={el.id}>
-            <img class="img-fluid" src={el.image} width={150}/>
-            {el.title} ${el.price}
-        </div>
-    ));
   
     // calculate cart total
     const total = () => {
@@ -195,13 +188,7 @@ function App() {
     // get total from cart
     useEffect(() => {
         total();
-    }, [cart]);
-
-    const backToBrowse = () => {
-
-      setViewer(0);
-
-    }
+    });
 
     const onSubmit = (data) => {
       console.log(data); // log all data
@@ -219,7 +206,7 @@ function App() {
             <nav class="navbar fixed navbar-expand-md navbar-light bg-white shadow py-2">
                  <div className="container-fluid">
                   <p>Shopping Cart</p>
-            <button type="button" class="btn btn-primary justify-content-end" onClick={backToBrowse}> Return </button>
+            <button type="button" class="btn btn-primary justify-content-end" onClick={() => updateHooks(0)}> Return </button>
             </div>
             </nav>
             <div class="card">
@@ -268,7 +255,7 @@ function App() {
 
           <div className="form-group">
             <input
-              {...register("creditCard", { required: true })}
+              {...register("creditCard", { required: true, minLength: 15 })}
               placeholder="Credit Card"
               className="form-control"
             />
@@ -311,7 +298,7 @@ function App() {
           </div>
           <div className="form-group">
             <input
-              {...register("zip", { required: true })}
+              {...register("zip", { required: true, minLength: 5, maxLength: 5 })}
               placeholder="Zip"
               className="form-control"
             />
@@ -363,16 +350,6 @@ function App() {
         </div>
       ));
 
-    const updateHooks = () => {
-      setViewer(0); // viewer is now on Browse
-      setDataF({fullName : "", email : "", creditCard : "", address : "", city : "", state : "", zip : ""}); // data is now an empty object
-    };
-
-    const backToCart = () => {
-      setViewer(1);
-
-    }
-
     // include a list of the items purchased as well
     return (<div>
         <h1>Payment summary:</h1>
@@ -384,8 +361,8 @@ function App() {
         <p>Total Cost: ${cartTotal.toFixed(2)}</p>
         <p>Number of items: {cart.length}</p>
         {listItems}
-        <button onClick={updateHooks} className="btn btn-secondary">Browse More</button>
-        <button onClick={backToCart} className="btn btn-primary">Back to Cart   </button>
+        <button onClick={() => updateHooks(0)} className="btn btn-secondary">Browse More</button>
+        <button onClick={() => updateHooks(1)} className="btn btn-primary">Back to Cart   </button>
     </div>);
 
   }
