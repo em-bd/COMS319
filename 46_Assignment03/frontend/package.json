@@ -10,11 +10,7 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-hook-form": "^7.51.3",
-<<<<<<< HEAD
-    "react-scripts": "^5.0.1",
-=======
     "react-scripts": "5.0.1",
->>>>>>> 50134e98b16d1d473e9055e17f07852304221bfd
     "web-vitals": "^2.1.4"
   },
   "scripts": {
