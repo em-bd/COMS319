@@ -6,8 +6,6 @@
  * Date: April 27th, 2024
  */
 
-var id = 21;
-
 const { MongoClient } = require("mongodb");
 
 var express = require("express");
@@ -128,19 +126,17 @@ app.post("/products", async (req, res) => {
         await client.connect();
         const values = Object.values(req.body);
 
+        console.log(values);
+
         const newDocument = {
-            "id" : id,
+            "id" : values[4],
             "title" : values[0],
-            "price" : values[1],
-            "description" : values[2],
+            "price" : Number(values[2]),
+            "description" : values[6],
             "category" : values[3],
-            "image" : values[4],
-            "rating" : {
-                "rate" : values[5],
-                "count" : values[6]
-            }
+            "image" : values[1],
+            "rating" : values[5]
         };
-        id++;
 
         console.log(newDocument);
 

@@ -17,20 +17,9 @@ function App() {
   const [product, setProduct] = useState([]);
   // update one product:
   const [oneProduct, setOneProduct] = useState([]);
-  var single_id = 0; // for the oneProduct view
+  const { register, handleSubmit, formState: { errors} } = useForm();
   // // new product:
-  const [addNewProduct, setAddNewProduct] = useState({
-    id: 0,
-    title: "",
-    price: 0.0,
-    description: "",
-    category: "",
-    image: "",
-    rating: {
-      rate: 0.0,
-      count: 0,
-    },
-  });
+  const [addNewProduct, setAddNewProduct] = useState({});
 
   // react hooks viewer:
   const [viewer, setViewer] = useState(0);
@@ -51,33 +40,14 @@ function App() {
       .then((data) => setProduct(data));
   }
 
-
-  // function getOneProduct(id) {
-  //   console.log(id);
-  //   if (id >= 1 && id <= 20) {
-  //     fetch("http://localhost:8081/products" + id)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log("Show one product :", id);
-  //         console.log(data);
-  //         setOneProduct(data);
-  //       });
-  //     setViewer(1);
-  //   } else {
-  //     console.log("Wrong number of Product id.");
-  //   }
-  // }
-
   /**
    * Browse page:
    * Displays all products on the page,
    * calls a GET request to the database 
    */
   function Browse() {
-    single_id = 0;
-
     const handleClick = (productID) => {
-      single_id = productID;
+      setOneProduct(product[productID - 1]);
       updateHooks(1);
     }
 
@@ -85,7 +55,7 @@ function App() {
       return (
       <div id="col" class="row row-cols-md-3 g-3">
         {product.map((el) => (
-          <button id={el.id} className="card text-bg-dark shadow-sm mx-1" onClick={() => handleClick(el.id)}>
+          <button key={el.id} id={el.id} className="card text-bg-dark shadow-sm mx-1" onClick={() => handleClick(el.id)}>
             <img src={el.image} className="card-img-top card-bottom" alt="image"/>
             <div class="card-body">
               <p class="card-text"> <strong>{el.title}</strong> ${el.price}</p>
@@ -94,10 +64,10 @@ function App() {
           </button>
         ))}
       </div>);
-    }
+    };
 
     return (<div class="text-bg-dark">
-      <nav class="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+      <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
         <div className="container-fluid">
           <h1>Catalog</h1>
           <div class="float-right">
@@ -111,7 +81,7 @@ function App() {
       </nav>
 
       <div class="album py-5">
-        <div class="container mx-auto">
+        <div className="container mx-auto">
             {render_products(product)}
         </div>
       </div>
@@ -126,42 +96,47 @@ function App() {
    * of the specified product.
    */
   function OneProduct() {
-    if (single_id >= 1 && single_id <= product.length) {
-      fetch(`http://localhost:8081/products/${single_id}`, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-        })
-        .then((response) => response.json())
-        .then((data) => setOneProduct(data));
-    } else {
-      console.log("Wrong number of Product id.");
-      setViewer(0);
+
+    const render_product = (oneProduct) => {
+      return (<div class="container d-flex align-center py-10">
+        <div>
+          <img class="h-100 w-100 img-fluid"src={oneProduct.image} width="100" alt="image"/>
+        </div>
+
+        <div class="float-left px-5">
+          <h2>{oneProduct.title}</h2>
+
+          <h4>
+            Rating: {oneProduct.rating.rate} <span class="text-muted">({oneProduct.rating.count})</span>
+          </h4>
+
+          <h4 class="text-green-600">${oneProduct.price}</h4>
+          <p class="card-text-sm w-50">{oneProduct.description}</p>
+        </div>
+      </div>);
     }
 
 
-    return(<div>
-      <nav class="navbar fixed navbar-expand-md navbar-light bg-white shadow py-2">
+    return(<div class="h-auto">
+      <nav class="navbar fixed navbar-expand-md navbar-dark text-bg-dark shadow py-2">
         <div className="container-fluid">
-          <h1>Catalog</h1>
+          <h1>Review Product</h1>
           <div class="float-right">
-            <button type="button" class="btn btn-primary mx-1" onClick={() => updateHooks(0)}>
-              Return </button>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
           </div>
         </div>
       </nav>
+      <div class="container">
+        {render_product(oneProduct)}
+      </div>
+      <div class="container">
+        <h4>Update Product Information:</h4>
+        <form id="change_data">
+          <input placeholder="price" type="number"></input>
+        </form>
+      </div>
     </div>)
   }
-
-  // const showOneItem = (
-  //   <div key={oneProduct.id}>
-  //     <img src={oneProduct.image} width={30} alt="images" /> <br />
-  //     Title: {oneProduct.title} <br />
-  //     Category: {oneProduct.category} <br />
-  //     Price: {oneProduct.price} <br />
-  //     {/* Rating: {oneProduct.rating.rate} <br />
-  //     Count: {oneProduct.rating.count} <br /> */}
-  //   </div>
-  // );
 
   /**
    * Add Product page:
@@ -169,28 +144,72 @@ function App() {
    */
   function AddProduct() {
 
-    
-    fetch("http://localhost:8081/products", {
+    const onSubmit = (data) => {
+      data.id = product.length + 1;
+      data.rating = {
+        rate : 0.0,
+        count : 0
+      }
+      data.description = "";
+      console.log(data);
+      setAddNewProduct(data);
+
+      fetch("http://localhost:8081/products", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(addNewProduct),
-    });
+      body: JSON.stringify(data),
+      });
+    }
 
     return (<div>
-      <h3>Update Products</h3>
-      <form onSubmit={AddProduct}>
-      <input placeholder="ID" onSubmit={(e) => setAddNewProduct.id(e.target.value)}></input> <br />
-      <input placeholder="Title" onSubmit={(e) => setAddNewProduct.title(e.target.value)}></input> <br />
-      <input placeholder="Image" onSubmit={(e) => setAddNewProduct.image(e.target.value)}></input> <br />
-      <input placeholder="Price" onSubmit={(e) => setAddNewProduct.price(e.target.value)}></input> <br />
-      <input placeholder="Category" onSubmit={(e) => setAddNewProduct.category(e.target.value)}></input> <br />
-      <input type="submit"></input>
+      <nav class="navbar fixed navbar-expand-md navbar-dark text-bg-dark shadow py-2">
+        <div className="container-fluid">
+          <h1>Update Products</h1>
+          <div class="float-right">
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
+          </div>
+        </div>
+      </nav>
+      <form className="py-4 px-5" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group py-1">
+          <input {...register("title", { required : true })}
+            placeholder="Title" type="text" className="form-control w-50">
+            {errors.title && (
+              <p className="text-danger">Title is required.</p>
+            )}
+            </input>
+        </div>
+        <div className="form-group py-1">
+          <input {...register("image", { required : true })} 
+            placeholder="Image" type="url" className="form-control w-50">
+            {errors.image && (
+              <p className="text-danger">Image URL is required.</p>
+            )}
+            </input>
+        </div>
+        <div className="form-group py-1">
+          <input {...register("price", { required : true })}
+            placeholder="Price" type="number" className="form-control w-50">
+              {errors.price && (
+                <p className="text-danger">Price is required.</p>
+              )}
+            </input>
+        </div>
+        <div className="form-group py-1">
+          <input {...register("category", { required : true })}
+            placeholder="Category" type="text" className="form-control w-50">
+              {errors.category && (
+                <p className="text-danger">Category is required.</p>
+              )}
+            </input>
+        </div>
+      <button type="submit" class="btn btn-primary py-1">Submit</button>
       </form>
     </div>);
   }
 
   return (
-    <div>
+    <div class="h-auto">
       {(viewer === 0) && <Browse />}
       {(viewer === 1) && <OneProduct />}
       {(viewer === 2) && <AddProduct />}
