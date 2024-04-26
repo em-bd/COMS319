@@ -78,7 +78,7 @@ app.get("/products/:id", async (req, res) => {
  * PUT request:
  * Updates the price of an object
  */
-app.put("/updateProduct/:id", async (req, res) => {
+app.put("/products/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
         const query = { id : id };
@@ -96,7 +96,10 @@ app.put("/updateProduct/:id", async (req, res) => {
                 "description" : req.body.description,
                 "category" : req.body.category,
                 "image" : req.body.image,
-                "rating" : req.body.rating
+                "rating" : {
+                    "rate" : req.body.rating.rate,
+                    "count" : req.body.rating.count
+                }
             }
         };
 
@@ -132,7 +135,10 @@ app.post("/addProduct", async (req, res) => {
             "description" : values[2],
             "category" : values[3],
             "image" : values[4],
-            "rating" : values[5]
+            "rating" : {
+                "rate" : values[5],
+                "count" : values[6]
+            }
         };
         id++;
 
