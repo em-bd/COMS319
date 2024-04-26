@@ -59,7 +59,7 @@ function App() {
   function getOneProduct(id) {
     console.log(id);
     if (id >= 1 && id <= 20) {
-      fetch("http://localhost:8081/products" + id)
+      fetch("http://localhost:8081/products/" + id)
         .then((response) => response.json())
         .then((data) => {
           console.log("Show one product :", id);
