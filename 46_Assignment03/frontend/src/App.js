@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     getAllProducts();
   }, []);
+
   function getAllProducts() {
     fetch("http://localhost:8081/products")
       .then((response) => response.json())
@@ -65,23 +66,28 @@ function App() {
           console.log("Show one product :", id);
           console.log(data);
           setOneProduct(data);
+
+          console.log(oneProduct.rating.rate);
+          console.log(oneProduct.rating.count);
         });
       setViewer(1);
     } else {
       console.log("Wrong number of Product id.");
+      setViewer(0);
     }
   }
 
-  const showOneItem = oneProduct.map((el) => (
-    <div key={el.id}>
-      <img src={el.image} width={30} alt="images" /> <br />
-      Title: {el.title} <br />
-      Category: {el.category} <br />
-      Price: {el.price} <br />
-      Rating: {el.rating[0]} <br />
-      Count: {el.rating[1]} <br />
+  const showOneItem = (
+
+    <div key={oneProduct.id}>
+      <img src={oneProduct.image} width={30} alt="images" /> <br />
+      Title: {oneProduct.title} <br />
+      Category: {oneProduct.category} <br />
+      Price: {oneProduct.price} <br />
+      Rating: {oneProduct.rating.rate} <br />
+      Count: {oneProduct.rating.count} <br />
     </div>
-  ));
+  );
 
   return (
     <div>
