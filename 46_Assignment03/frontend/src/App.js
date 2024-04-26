@@ -51,8 +51,8 @@ function App() {
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
-      Rating :{el.rating[0]} <br />
-      Count :{el.rating[1]} <br />
+      Rating :{el.rating.rate} <br />
+      Count :{el.rating.count} <br />
     </div>
   ));
 
