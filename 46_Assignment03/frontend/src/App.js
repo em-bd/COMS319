@@ -23,7 +23,10 @@ function App() {
     description: "",
     category: "",
     image: "",
-    rating: 0.0,
+    rating: {
+      rate: 0.0,
+      count: 0
+    },
   });
 
   const [viewer, setViewer] = useState(0);
