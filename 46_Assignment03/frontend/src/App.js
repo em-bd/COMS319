@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import { Button } from "bootstrap";
 
 function App() {
   // browse:
@@ -97,7 +98,10 @@ function App() {
    */
   function OneProduct() {
 
+
     const render_product = (oneProduct) => {
+
+
       return (<div class="container d-flex align-center py-10">
         <div>
           <img class="h-100 w-100 img-fluid"src={oneProduct.image} width="100" alt="image"/>
@@ -116,6 +120,31 @@ function App() {
       </div>);
     }
 
+    console.log(oneProduct.rating.rate)
+
+
+    const onSubmit = (data) => {
+
+      const newProduct = {
+        "id" : oneProduct.id,
+        "title" : oneProduct.title,
+        "price" : Number(data.price),
+        "description" : oneProduct.description,
+        "category" : oneProduct.category,
+        "image" : oneProduct.image,
+        "rating" : oneProduct.rating.rate,
+        "count" : oneProduct.rating.count
+      }
+
+      fetch("http://localhost:8081/products/"+oneProduct.id, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(newProduct),
+        });
+      
+
+    }
+
 
     return(<div class="h-auto">
       <nav class="navbar fixed navbar-expand-md navbar-dark text-bg-dark shadow py-2">
@@ -131,9 +160,14 @@ function App() {
       </div>
       <div class="container">
         <h4>Update Product Information:</h4>
-        <form id="change_data">
-          <input placeholder="price" type="number"></input>
-        </form>
+        <form className="py-4 px-5" onSubmit={handleSubmit(onSubmit)}>
+  <div className="form-group py-1">
+
+  <input  {...register("price", { required : true })}placeholder="Price" type="number" className="form-control w-50"></input>
+
+  </div>
+<button type="submit" class="btn btn-primary py-1">Submit</button>
+  </form>
       </div>
     </div>)
   }
@@ -207,12 +241,54 @@ function App() {
       </form>
     </div>);
   }
+  
+  function RemoveProduct() {
+
+
+
+    const onSubmit = (data) => {
+
+      fetch("http://localhost:8081/products/"+data.id, {
+        method: "DELETE",
+        });
+
+    }
+
+    return (
+      <div>
+      <div class="text-bg-dark">
+      <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+        <div className="container-fluid">
+          <h1>Remove Product</h1>
+          <div class="float-right">
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
+            </nav>
+          </div>
+        </div>
+      </nav>
+  </div>
+  <form className="py-4 px-5" onSubmit={handleSubmit(onSubmit)}>
+  <div className="form-group py-1">
+
+  <input  {...register("id", { required : true })}placeholder="ID" type="number" className="form-control w-50"></input>
+
+  </div>
+<button type="submit" class="btn btn-primary py-1">Submit</button>
+  </form>
+
+  
+  </div>
+    )
+
+  }
 
   return (
     <div class="h-auto">
       {(viewer === 0) && <Browse />}
       {(viewer === 1) && <OneProduct />}
       {(viewer === 2) && <AddProduct />}
+      {(viewer === 3) && <RemoveProduct />}
     </div>
   );
 

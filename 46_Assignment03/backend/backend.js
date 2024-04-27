@@ -88,7 +88,7 @@ app.put("/products/:id", async (req, res) => {
 
         const updateData = {
             $set: {
-                "id" : req.body.name,
+                "id" : req.body.id,
                 "title" : req.body.title,
                 "price" : req.body.price,
                 "description" : req.body.description,
@@ -155,7 +155,7 @@ app.post("/products", async (req, res) => {
  * DELETE request:
  * Deletes Product with the specified id
  */
-app.delete("/deleteProduct/:id", async (req, res) => {
+app.delete("/products/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
 
