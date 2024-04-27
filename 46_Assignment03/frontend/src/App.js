@@ -132,8 +132,10 @@ function App() {
         "description" : oneProduct.description,
         "category" : oneProduct.category,
         "image" : oneProduct.image,
-        "rating" : oneProduct.rating.rate,
+        "rating" : {
+        "rate" : oneProduct.rating.rate,
         "count" : oneProduct.rating.count
+        }
       }
 
       fetch("http://localhost:8081/products/"+oneProduct.id, {
