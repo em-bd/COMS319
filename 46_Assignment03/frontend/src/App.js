@@ -252,37 +252,95 @@ function App() {
 
       fetch("http://localhost:8081/products/"+data.id, {
         method: "DELETE",
+        headers: { 'Content-type' : 'application/json' }
         });
 
     }
 
     return (
       <div>
-      <div class="text-bg-dark">
-      <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
-        <div className="container-fluid">
-          <h1>Remove Product</h1>
-          <div class="float-right">
-          <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
+          <div class="text-bg-dark">
+            <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+              <div className="container-fluid">
+                <h1>Remove Product</h1>
+                <div class="float-right">
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                  <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
+                  </nav>
+                </div>
+              </div>
             </nav>
-          </div>
         </div>
-      </nav>
-  </div>
-  <form className="py-4 px-5" onSubmit={handleSubmit(onSubmit)}>
-  <div className="form-group py-1">
+        <form className="py-4 px-5" onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group py-1">
 
-  <input  {...register("id", { required : true })}placeholder="ID" type="number" className="form-control w-50"></input>
+          <input  {...register("id", { required : true })}placeholder="ID" type="number" className="form-control w-50"></input>
 
-  </div>
-<button type="submit" class="btn btn-primary py-1">Submit</button>
-  </form>
+          </div>
+          <button type="submit" class="btn btn-primary py-1">Submit</button>
+        </form>
 
-  
-  </div>
+    
+      </div>
     )
 
+  }
+
+
+  /**
+   * About Us page:
+   * This displays the About Us section, which
+   * displays information about the students and
+   * the course.
+   */
+  function AboutUs() {
+    return (
+      <div class="text-bg-dark">
+        <div>
+            <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+              <div className="container-fluid">
+                <h1>About Us</h1>
+                <div class="float-right">
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                  <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(0)}>Return</a>
+                  </nav>
+                </div>
+              </div>
+            </nav>
+        </div>
+
+        <h2 class="text-bg-dark px-10 my-3">SE/COMS 319</h2>
+
+        <div class="d-flex justify-content-center">
+          <div class="album py-5">
+            <div class="container mx-auto">
+              <div id="col" class="row row-cols-1 row-cols-sm-2 g-4">
+                <div class="card shadow-sm bg-dark">
+                  <div class="card-body">
+                    <h5 class="card-title text-white">Sam Craft</h5>
+                    <p class="card-text text-white">Sophomore studying Software Engineering.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                    <img class="card-img-top card-img-bottom" src="IMG_3992.jpeg" alt="Picture of Sam"/>
+                  </div>
+                </div>
+
+                <div class="card shadow-sm bg-dark">
+                  <div class="card-body">
+                    <h5 class="card-title text-white">Em Bradley-DeHaan</h5>
+                    <p class="card-text text-white">Junior studying Software Engineering</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                    <img class="card-img-top card-img-bottom" src="IMG_4867.jpg" alt="Picture of Em"/>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -291,37 +349,9 @@ function App() {
       {(viewer === 1) && <OneProduct />}
       {(viewer === 2) && <AddProduct />}
       {(viewer === 3) && <RemoveProduct />}
+      {(viewer === 4) && <AboutUs />}
     </div>
   );
-
-//   return (
-//     <div>
-//       <h1>Catalog of Products</h1>
-//       <h3>Show all available Products.</h3>
-//       <button onClick={() => getAllProducts()}>Show All ...</button>
-//       {viewer === 0 && showAllItems}
-//       <h3>Show one Product by Id:</h3>
-//       <input
-//         type="text"
-//         id="message"
-//         name="message"
-//         placeholder="id"
-//         onChange={(e) => getOneProduct(e.target.value)}
-//       />{" "}
-//       <br />
-//       {viewer === 1 && showOneItem}
-      // <h3>Update Products</h3>
-      // <form onSubmit={AddOneProduct}>
-      // <input placeholder="ID" onSubmit={(e) => setAddNewProduct.id(e.target.value)}></input> <br />
-      // <input placeholder="Title" onSubmit={(e) => setAddNewProduct.title(e.target.value)}></input> <br />
-      // <input placeholder="Image" onSubmit={(e) => setAddNewProduct.image(e.target.value)}></input> <br />
-      // <input placeholder="Price" onSubmit={(e) => setAddNewProduct.price(e.target.value)}></input> <br />
-      // <input placeholder="Category" onSubmit={(e) => setAddNewProduct.category(e.target.value)}></input> <br />
-      // <input type="submit"></input>
-      // </form>
-// >>>>>>> 7904ced37e62e1cd9dbb34586e1d9af19947eb5b */}
-//     </div>
-//   );
 }
 
 export default App;
