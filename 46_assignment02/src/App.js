@@ -60,7 +60,7 @@ function App() {
     function howManyofThis(id) {
       let hmot = cart.filter((cartItem) => cartItem.id === id);
       return hmot.length;
-  }
+    }
         
     // product rendering:
     const render_products = (ProductsCategory) => {
@@ -100,7 +100,7 @@ function App() {
               ))}
               </div>     
           </div>);
-        }
+    }
 
     // search even handler:
     const handleChange = (e) => {

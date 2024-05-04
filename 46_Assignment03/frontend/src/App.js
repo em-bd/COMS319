@@ -176,7 +176,13 @@ function App() {
 
   /**
    * Add Product page:
-   * 
+   * The user can add a product by
+   * providing the necessary fields, which
+   * it will make sure the user fills in
+   * all necessary fields. Once all
+   * necessary fields are filled, the
+   * new product will be added to the
+   * database.
    */
   function AddProduct() {
 
@@ -244,17 +250,20 @@ function App() {
     </div>);
   }
   
+
+  /**
+   * Remove Product page:
+   * This page will take input from the
+   * user and delete the object of the
+   * corresponding ID from the database.
+   */
   function RemoveProduct() {
 
-
-
     const onSubmit = (data) => {
-
       fetch("http://localhost:8081/products/"+data.id, {
         method: "DELETE",
         headers: { 'Content-type' : 'application/json' }
         });
-
     }
 
     return (
