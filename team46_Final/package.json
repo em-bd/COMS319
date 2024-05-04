@@ -5,6 +5,8 @@
     "cors": "^2.8.5",
     "expres": "^0.0.5",
     "express": "^4.19.2",
-    "mongodb": "^6.6.0"
+    "mongodb": "^6.6.0",
+    "react-hook-form": "^7.51.4",
+    "react-router-dom": "^6.23.0"
   }
 }
