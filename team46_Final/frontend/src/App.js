@@ -16,13 +16,9 @@ import Main from "Main";
 import Implements from "Implements";
 import Vehicles from "Vehicles";
 
-function App() {
-  // react hooks viewer:
-  const [viewer, setViewer] = useState(0);
+const [viewer, setViewer] = useState(0);
 
-  function updateHooks(i) {
-    setViewer(i);
-  }
+function App() {
 
 
 
