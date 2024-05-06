@@ -482,6 +482,8 @@ function App() {
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setUser({}) && setViewer(0)}>Logout</a>
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(3)}>Cart</a>
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(5)}>About Us</a>
+            {u.priv === "admin" &&
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(6)}>Remove Users</a>}
           </div>
         </div>
       </nav>
@@ -763,6 +765,10 @@ function App() {
     </div>);
   }
 
+  function RemoveUsers() {
+
+  }
+
 
   return (
     <div>
@@ -772,6 +778,7 @@ function App() {
       {viewer == 3 && <Cart />}
       {viewer == 4 && <Summary />}
       {viewer == 5 && <AboutUs />}
+      {viewer == 6 && u.priv === "admin" && <RemoveUsers />}
     </div>
   );
 }
