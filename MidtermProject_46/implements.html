@@ -114,19 +114,22 @@
                                 style="padding-top : 20px; padding-bottom : 20px;">
                                 <div class="list-group">
                                     <label class="list-group-item d-flex gap-2">
-                                        <input id="seeder" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
+                                        <input id="seeder" class="form-check-input flex-shrink-0" name="type"
+                                            type="checkbox" value="">
                                         <span>
                                             Seeder
                                         </span>
                                     </label>
                                     <label class="list-group-item d-flex gap-2">
-                                        <input id="crop-care" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
+                                        <input id="crop-care" class="form-check-input flex-shrink-0" name="type"
+                                            type="checkbox" value="">
                                         <span>
                                             Crop Care
                                         </span>
                                     </label>
                                     <label class="list-group-item d-flex gap-2">
-                                        <input id="planter" class="form-check-input flex-shrink-0" name="type" type="checkbox" value="">
+                                        <input id="planter" class="form-check-input flex-shrink-0" name="type"
+                                            type="checkbox" value="">
                                         <span>
                                             Planters
                                         </span>
@@ -166,43 +169,44 @@
                         </div>
                     </li>
                 </ul>
-            </li>
+                </li>
 
-            <li class="border-top my-3"></li>
+                <li class="border-top my-3"></li>
 
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
-                    Price Range
-                </button>
-                <div class="collapse" id="price-collapse">
-                    <div style="padding-top : 20px; padding-bottom: 20px;">
-                        <div class="slide-container">
-                            <input type="range" min="0" max="200" value="0" class="minslider" id="minpricerangeslider">
-                            <div class="minpricevalue">0</div>
-                        </div>
-                        <div class="slide-container">
-                            <input type="range" min="0" max="200" value="200" class="maxslider"
-                                id="maxpricerangeslider">
-                            <div class="maxpricevalue">200</div>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
+                        Price Range
+                    </button>
+                    <div class="collapse" id="price-collapse">
+                        <div style="padding-top : 20px; padding-bottom: 20px;">
+                            <div class="slide-container">
+                                <input type="range" min="0" max="200" value="0" class="minslider"
+                                    id="minpricerangeslider">
+                                <div class="minpricevalue">0</div>
+                            </div>
+                            <div class="slide-container">
+                                <input type="range" min="0" max="200" value="200" class="maxslider"
+                                    id="maxpricerangeslider">
+                                <div class="maxpricevalue">200</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            </ul>
-            <button class="btn-filter" onclick="filterQuery()">
-                Apply Filters
-            </button>
-        </div>
+                </li>
+                </ul>
+                <button class="btn-filter" onclick="filterQuery()">
+                    Apply Filters
+                </button>
+            </div>
 
-        <div class="album py-5">
-            <div class="container mx-auto">
-                <div id="col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <div class="album py-5">
+                <div class="container mx-auto">
+                    <div id="col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <script src="./sidebars.js"></script>
     <script src="./implements.js"></script>

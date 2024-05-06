@@ -1,0 +1,446 @@
+[
+    {
+        "id": 1,
+        "src": "https://cdn.pixabay.com/photo/2018/05/02/20/36/fendt-3369617_1280.jpg",
+        "name": "Fendt Tractor",
+        "alt": "Close-up of a green tractor",
+        "keywords" : ["tractor", "green", "vehicle"],
+        "rating": [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments": [],
+        "price": 10250.00,
+        "desc": "High-suspension tractor with capabilities of handling floods, muddy fields, and uneven fields.",
+        "specs": [
+            "Off-roading",
+            "Versatile",
+            "Back hitch",
+            "Front hitch"
+        ]
+    },
+    {
+        "id" : 2,
+        "src" : "https://plus.unsplash.com/premium_photo-1661934039679-9c893f091ddd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Cultivator",
+        "alt" : "Vehicle tilling the ground",
+        "keywords" : ["seeder", "red", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 2299.99,
+        "desc" : "Cultivator attachment that helps till the ground for large farms.",
+        "specs" : [
+            "Tractor Attachment",
+            "Sturdy",
+            "Multi-purpose"
+        ]
+    },
+    {
+        "id" : 3,
+        "src" : "https://cdn.pixabay.com/photo/2017/03/13/07/38/combine-harvester-2138997_1280.jpg",
+        "name" : "CLAAS",
+        "alt" : "Large harvester in a recently harvested wheat field next to a tractor",
+        "keywords" : ["harvester", "green", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 12350.00,
+        "desc" : "Combine harvester with an overhead light attachment for working both day and night. Allows for either replanting straw or leaving it behind for baling.",
+        "specs" : [
+            "Front hitch",
+            "Overhead light",
+            "Large span",
+            "Versatile"
+        ]
+    },
+    {
+        "id" : 4,
+        "src" : "https://images.unsplash.com/photo-1601593797922-325abb0f763d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "McCormick Farmall",
+        "alt" : "Red tractor in a field",
+        "keywords" : ["tractor", "red", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 6250.00,
+        "desc" : "Simple tractor with a back hitch intended for multi-purpose use.",
+        "specs" : [
+            "Back hitch",
+            "Versatile"
+        ]
+    },
+    {
+        "id" : 5,
+        "src" : "https://images.unsplash.com/photo-1557804950-901398de43ba?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Tulip bulb",
+        "alt" : "Several flowering tulips",
+        "keywords" : ["seed", "spring", "product", "1 bulb", "10 bulbs", "20 bulbs", "40 bulbs"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 5.99,
+        "desc" : "Tulip bulbs to plant in your outdoor garden or to grow inside.",
+        "specs" : [
+            "Seasonal",
+            "Indoor & Outdoor"
+        ]
+    },
+    {
+        "id" : 6,
+        "src" : "https://images.unsplash.com/photo-1527847263472-aa5338d178b8?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Baler",
+        "alt" : "Vehicle collecting straw to bundle",
+        "keywords" : ["baler", "green", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 13400.00,
+        "desc" : "A Baler intended to make your baling easy. Built with a sturdy tank designed to withstand the elements.",
+        "specs" : [
+            "Hay-baling",
+            "Sturdy",
+            "Compact"
+        ]
+    },
+    {
+        "id" : 7,
+        "src" : "https://images.unsplash.com/photo-1613036582025-ba1d4ccb3226?q=80&w=2535&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Potting Soil",
+        "alt" : "An image of potting soil",
+        "keywords" : ["soil", "all-seasons", "product", "5 lbs", "10 lbs", "20 lbs", "40 lbs"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 10.99,
+        "desc" : "Potting soil that's excellent for fruits, vegetables, flowers, herbs, and any other plants you wish to grow. Perfect for succulents and indoor plants.",
+        "specs" : [
+            "Indoor & Outdoor use",
+            "Potting",
+            "Excellent water retention",
+            "Versatile"
+        ]
+    },
+    {
+        "id": 8,
+        "src": "https://cdn.pixabay.com/photo/2016/11/10/21/29/tractor-1815232_1280.jpg",
+        "name": "John Deere Heavy-Duty Tractor",
+        "alt": "Green tractor connected to a red farming implement in a field",
+        "keywords" : ["tractor", "green", "vehicle"],
+        "rating": [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments": [],
+        "price": 9560.00,
+        "desc": "John Deere tractor designed for heavy-duty work to withstand work in the fields.",
+        "specs": [
+            "Compact",
+            "Heavy-duty",
+            "Back hitch"
+        ]
+    },
+    {
+        "id" : 9,
+        "src" : "https://images.unsplash.com/photo-1614977646033-448adc696eb6?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Tractor with Lift",
+        "alt" : "Blue and black tractor with a lift connected to a trailer",
+        "keywords" : ["tractor", "blue", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 8250.00,
+        "desc" : "Tractor with front attachment for mutliple purposes.",
+        "specs" : [
+            "Heavy Lifting",
+            "Multi-purpose front attachment",
+            "Excavation",
+            "Back hitch"
+        ]
+    },
+    {
+        "id" : 10,
+        "src" : "https://images.unsplash.com/photo-1595702852378-f9c79111413f?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Mountable John Deere Planter",
+        "alt" : "John Deere vehicle planting and covering seeds up in a field",
+        "keywords" : ["seeder", "green", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 3599.99,
+        "desc" : "Large spanning John Deere planter that will till, plant, and fertilize seeds.",
+        "specs" : [
+            "Tractor Attachment",
+            "Tilling and Planting Capabilities",
+            "Large span",
+            "Liquid Fertilizing System"
+        ]
+    },
+    {
+        "id" : 11,
+        "src" : "https://static.grainews.ca/wp-content/uploads/2017/06/Early-Riser-2160-main.jpeg",
+        "name" : "Mountable Case Planter",
+        "alt" : "Vehicle planting and covering seeds up in a field",
+        "keywords" : ["seeder", "red", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 3599.99,
+        "desc" : "Large spanning Case IH planter that will till, plant, and fertilize seeds.",
+        "specs" : [
+            "Tractor Attachment",
+            "Tilling and Planting Capabilities",
+            "Large span",
+            "Liquid Fertilizing System"
+        ]
+    },
+    {
+        "id" : 12,
+        "src" : "https://plus.unsplash.com/premium_photo-1661962971074-1554649d40d5?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Sprayer",
+        "alt" : "Vehicle spraying pesticides over growing crops",
+        "keywords" : ["crop-care", "red", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 1600.00,
+        "desc" : "Large spanning sprayer attachment for farming equipment to keep pests, insects, and weeds away from your crops.",
+        "specs" : [
+            "Large span",
+            "Moisture and Chemical resistant",
+            "Tractor Attachment"
+        ]
+    },
+    {
+        "id" : 13,
+        "src" : "https://images.unsplash.com/photo-1593525939463-027e5ccb5619?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Irrigation Hose",
+        "alt" : "Irrigation hose set up in a field",
+        "keywords" : ["crop-care", "blue", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 350.00,
+        "desc" : "Irrigation hoses to help water large fields and keep crops healthy.",
+        "specs" : [
+            "Sturdy",
+            "Retractible"
+        ]
+    },
+    {
+        "id" : 14,
+        "src" : "https://images.unsplash.com/photo-1606041974734-0341c2d2d988?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "John Deere Harvester",
+        "alt" : "Harvester actively collecting and threshing in a wheat field",
+        "keywords" : ["harvester", "green", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 15500.00,
+        "desc" : "Large John Deere Harvester with a compact, complex threshing system designed to make harvesting easy.",
+        "specs" : [
+            "Thresher",
+            "Compact",
+            "Heavy-duty"
+        ]
+    },
+    {
+        "id" : 15,
+        "src" : "https://plus.unsplash.com/premium_photo-1661849201240-a0d3bdea40d8?q=80&w=2685&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Spreader",
+        "alt" : "Vehicle spraying pesticides and insecticides over newly planted crops",
+        "keywords" : ["spreader", "red", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 1100.00,
+        "desc" : "Sprayer attachment that can protect newly planted seeds from harsh insects. Chemical and moisture resistant layering within the tank to allow long-term use.",
+        "specs" : [
+            "Large spray radius",
+            "Sturdy",
+            "Moisture and Chemical resistant",
+            "Tractor Attachment"
+        ]
+    },
+    {
+        "id" : 16,
+        "src" : "https://images.unsplash.com/photo-1587316807833-7008b6d63a4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Small Greenhouse Planters",
+        "alt" : "Someone planting starters into a small planter set",
+        "keywords" : ["planter", "all", "implement"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 15.95,
+        "desc" : "Planters to help with propagation of any plant. Good for indoor plant propagation and small fruit, herb, or vegetable starters.",
+        "specs" : [
+            "Indoor & Outdoor use"
+        ]
+    },
+    {
+        "id" : 17,
+        "src" : "https://images.unsplash.com/photo-1589562760889-38898c71d3d8?q=80&w=2436&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Mulch",
+        "alt" : "An image of mulch soil",
+        "keywords" : ["soil", "all-seasons", "product", "20 lbs", "40 lbs"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 21.99,
+        "desc" : "Mulch for your garden. Keeps your soil healthy and fights off unwanted weeds from sprouting and attacking your flowers.",
+        "specs" : [
+            "Outdoor use",
+            "Weed control",
+            "Growth promoting"
+        ]
+    },
+    {
+        "id" : 18,
+        "src" : "https://plus.unsplash.com/premium_photo-1682148079965-2a80a9acd8ac?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Seeds",
+        "alt" : "A handful of an assortment of seeds", 
+        "keywords": ["seed", "spring", "product", "1 lb", "10 lbs", "20 lbs", "40 lbs"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 2.99,
+        "desc" : "Prarie seeds comprised exclusively of native flora.",
+        "specs" : [
+            "Native species",
+            "Assorted"
+        ]
+    },
+    {
+        "id" : 19,
+        "src" : "https://images.pexels.com/photos/12925598/pexels-photo-12925598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "name" : "Fertilizer",
+        "alt" : "A handful of fertilizer",
+        "keywords" : ["material", "all-seasons", "product", "1 lb", "10 lbs", "20 lbs", "40 lbs"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 10.24,
+        "desc" : "All-purpose fertilizer for your growing needs.",
+        "specs" : [
+            "Indoor & Outdoor use",
+            "All-purpose",
+            "Excellent water retention"
+        ]
+    },
+    {
+        "id" : 20,
+        "src" : "https://images.unsplash.com/photo-1661328992560-55256f06bdad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "Garden Mesh Netting",
+        "alt" : "Picture of mesh netting covering smaller plants",
+        "keywords" : ["material", "all-seasons", "product", "100 ft", "200 ft", "400 ft"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 5.00,
+        "desc" : "Great for keeping larger animals from eating your crops.",
+        "specs" : [
+            "Outdoor use",
+            "Eco-friendly",
+            "Flexible"
+        ]
+    },
+    {
+        "id" : 21,
+        "src" : "https://images.unsplash.com/photo-1614977645540-7abd88ba8e56?q=80&w=2573&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "name" : "John Deere Compact Tractor",
+        "alt" : "Green tractor in a barn",
+        "keywords" : ["tractor", "green", "vehicle"],
+        "rating" : [
+            {
+                "count" : 0,
+                "rate" : 0.0
+            }
+        ],
+        "comments" : [],
+        "price" : 8950.00,
+        "desc" : "Compact tractor with back and frontal attachment capabilities.",
+        "specs" : [
+            "Back hitch",
+            "Versatile",
+            "Heavy-duty",
+            "Compact",
+            "Front hitch"
+        ]
+    }
+]
