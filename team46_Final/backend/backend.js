@@ -193,7 +193,7 @@ app.delete("/users/:id", async (req, res) => {
         const uid = Number(req.params.id);
 
         await client.connect();
-        console.log("User ID to delete :", id);
+        console.log("User ID to delete :", uid);
 
         const query = { id : uid };
 
