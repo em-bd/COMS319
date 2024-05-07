@@ -474,8 +474,14 @@ function App() {
               </div>
             </div>
             <div className="py-3">
+              <div>
               <textarea id="comment_body" placeholder="Leave a Review!" type="text" style={{ "width": "400px", "height": "112.8px" }}></textarea>
+              </div>
+              <div>
               <button onClick={submitComment} class="btn btn-primary">Submit</button>
+              </div>
+              
+
             </div>
           </div>
         </div>
