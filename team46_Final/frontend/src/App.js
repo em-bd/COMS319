@@ -227,23 +227,25 @@ function App() {
 
     // renders all products on the page:
     const renderProducts = (product) => {
-      return (<div className="category-section fixed">
-        <div className="m-6 p-3 mt-10 m1-0 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 x1:gap-x-10" style={{ maxHeight: '800px', overflowY: 'scroll' }}>
+      return (<div class="album py-5">
+      <div class="container mx-auto">
+        <div id = "col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           {product.map((el) => (
-            <div key={el.id} className="group relative shadow-lg">
-              <div className="min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+            <div key={el.id}>
+              <div>
               <a onClick={() => handleClick(el.id)}>
                 <img
+                class = "card-img-top card-img-bottom"
                   src={el.src}
                   alt={el.alt}
-                  className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                  width={400}
+                  // className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+
                 />
                </a>
               </div>
               <div className="flex justify-between p-3">
                 <div>
-                  <h3 className="text-sm text-gray-700">
+                  <h3 className="card-body">
                     <a onClick={() => handleClick(el.id)}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       <span style={{ fontSize: '16px', fontWeight: '600' }}>{el.name}</span>
@@ -263,11 +265,13 @@ function App() {
               </div>
             </div>
           ))}
+            </div>
+          </div>
         </div>
-      </div>);
+  );
     };
 
-    return (<div className="text-bg-dark">
+    return (<div className="container-fluid flex-column text-bg-dark">
       <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
         <div className="container-fluid">
           <h1>FarmersRUs</h1>
@@ -283,7 +287,7 @@ function App() {
         </div>
       </nav>
 
-      <div className="d-flex mt-5 px-2">
+      <div className="d-flex mt-5 m-auto">
         <div className="sidebar-nav flex-shrink-0 flex-column">
           <span className="fs-5 fw-semibold">Filters</span>
           <ul className="list-unstyled ps-0">
@@ -392,9 +396,9 @@ function App() {
           </button>
         </div>
 
-        <div className="m1-5 x1:basis-4/5">
+
           {renderProducts(keywords)}
-        </div>
+
       </div>
     </div>);
   }
