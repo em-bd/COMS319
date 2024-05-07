@@ -113,6 +113,7 @@ function App() {
         if (allUsers[u].username === data.username) {
           return;
         }
+        getAllUsers()
       }
 
       fetch("http://localhost:8081/users", {
@@ -150,11 +151,11 @@ function App() {
         <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
             <input {...register("username", { required: true })}
-              placeholder="Username" type="text" className="form-control w-50">
+              placeholder="Username" type="text" className="form-control w-50"/>
               {errors.username && (
                 <p className="text-danger">Username required.</p>
               )}
-            </input>
+
           </div>
           <div className="form-group py-1">
             <input {...register("password", { required: true })}
