@@ -151,18 +151,18 @@ function App() {
       <div className="container-fluid">
         <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
-            <input {...register("username", { required: true })}
-              placeholder="Username" type="text" className="form-control" />
-              {errors.username && (
-                <p className="text-danger">Username required.</p>
-              )}
+            <input {...register("username", { reqred: true })}
+              placeholder="Username" type="text" className="form-control w-50" />
+            {errors.username && (
+              <p className="text-danger">Username required.</p>
+            )}
           </div>
           <div className="form-group py-1">
             <input {...register("password", { required: true })}
-              placeholder="Password" type="password" className="form-control"/>
-              {errors.password && (
-                <p className="text-danger">Password required.</p>
-              )}
+              placeholder="Password" type="password" className="form-control w-50" />
+            {errors.password && (
+              <p className="text-danger">Password required.</p>
+            )}
           </div>
           <button type="submit" className="btn btn-primary py-1">Login</button>
           <button onClick={handleSubmit(onRegisterSubmit)} className="btn btn-primary px-1 py-1">Register</button>
@@ -224,9 +224,9 @@ function App() {
       for (let j in vals) {
         for (let k in products) {
           for (let l in products[k].keywords) {
-            if (products[k].keywords[l] === vals[j] 
-              && ((filtered.length === 0) 
-              || (filtered.length > 0 && filtered.filter((f) => (f.id !== products[k].id).length === 0))))
+            if (products[k].keywords[l] === vals[j]
+              && ((filtered.length === 0)
+                || (filtered.length > 0 && filtered.filter((f) => (f.id !== products[k].id).length === 0))))
               filtered.push(products[k]);
           }
         }
@@ -238,44 +238,44 @@ function App() {
     // renders all products on the page:
     const renderProducts = (product) => {
       return (<div class="album py-5">
-      <div class="container mx-auto">
-        <div id = "col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {product.map((el) => (
-            <div key={el.id}>
-              <div>
-              <a onClick={() => handleClick(el.id)}>
-                <img
-                  src={el.src}
-                  alt={el.alt}
-                  className="card-img-bottom card-img-top"
-                  style={{ "borderRadius" : "5px" }}
-                />
-               </a>
-              </div>
-              <div className="flex justify-between p-3">
+        <div class="container mx-auto">
+          <div id="col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {product.map((el) => (
+              <div key={el.id}>
                 <div>
-                  <h3 className="card-body">
-                    <a onClick={() => handleClick(el.id)}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      <span style={{ fontSize: '16px', fontWeight: '600' }}>{el.name}</span>
-                    </a>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count}) ${el.price}</p>
-                  <div className='flex justify-between'>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(el)} > - </button>{" "}
-                      <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(el)}> + </button>
+                  <a onClick={() => handleClick(el.id)}>
+                    <img
+                      src={el.src}
+                      alt={el.alt}
+                      className="card-img-bottom card-img-top"
+                      style={{ "borderRadius": "5px" }}
+                    />
+                  </a>
+                </div>
+                <div className="flex justify-between p-3">
+                  <div>
+                    <h3 className="card-body">
+                      <a onClick={() => handleClick(el.id)}>
+                        <span aria-hidden="true" className="absolute inset-0" />
+                        <span style={{ fontSize: '16px', fontWeight: '600' }}>{el.name}</span>
+                      </a>
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count}) ${el.price}</p>
+                    <div className='flex justify-between'>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(el)} > - </button>{" "}
+                        <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(el)}> + </button>
+                      </div>
+                      <p>{howManyofThis(el.id)}</p>
                     </div>
-                    <p>{howManyofThis(el.id)}</p>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-            </div>
+            ))}
           </div>
         </div>
-  );
+      </div>
+      );
     };
 
     return (<div className="container-fluid flex-column text-bg-dark">
@@ -299,7 +299,7 @@ function App() {
           <span className="lead fw-semibold">Filters</span>
           <ul className="list-unstyled ps-0">
             <li className="mb-1">
-            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
+              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft": "5px" }}>
                 Implements
               </span>
               <div id="implement-collapse">
@@ -332,7 +332,7 @@ function App() {
             <li className="border-top my-3"></li>
 
             <li className="mb-1">
-              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
+              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft": "5px" }}>
                 Vehicles
               </span>
               <div id="vehicle-collapse">
@@ -365,7 +365,7 @@ function App() {
             <li class="border-top my-3"></li>
 
             <li class="mb-1">
-            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
+              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft": "5px" }}>
                 Products
               </span>
               <div id="product-collapse">
@@ -399,7 +399,7 @@ function App() {
             Apply Filters
           </button>
         </div>
-          {renderProducts(keywords)}
+        {renderProducts(keywords)}
       </div>
     </div>);
   }
@@ -412,7 +412,7 @@ function App() {
    */
   function OneProduct() {
     // user is adding a comment:
-    function onSubmit() {
+    const submitComment = () => {
       let comment_body = document.getElementById("comment_body");
 
       if (comment_body.value.length === 0)
@@ -425,11 +425,14 @@ function App() {
 
       // put request:
       oneProduct.comments.push(newComment);
+      console.log(oneProduct.comments);
       fetch("http://localhost:8081/products/" + oneProduct.id, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(oneProduct),
       })
+
+      
     }
 
     const renderProduct = (oneProduct) => {
@@ -454,17 +457,19 @@ function App() {
           <div>
             <div>
               <h4>Comments:</h4>
+              <div id="commentsection">
               {oneProduct.comments.map((c) => {
                 return (<div>
                   <h5>{c.user}</h5>
                   <p>{c.body}</p>
                 </div>)
               })}
+              </div>
             </div>
-            <form className="py-3" onSubmit={onSubmit}>
-              <textarea id="comment_body" placeholder="Leave a Review!" type="text" className="form-control" style={{ "width": "400px", "height": "112.8px" }}></textarea>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div className="py-3">
+              <textarea id="comment_body" placeholder="Leave a Review!" type="text" style={{ "width": "400px", "height": "112.8px" }}></textarea>
+              <button onClick={submitComment} class="btn btn-primary">Submit</button>
+            </div>
           </div>
         </div>
       </div>);
@@ -537,7 +542,7 @@ function App() {
           </div>
           <hr className="my-2 mx-1"
             style={{ borderTop: "1px solid lightgrey" }}
-        ></hr>
+          ></hr>
         </div>
       </div>
     ));
@@ -574,27 +579,27 @@ function App() {
           </div>
         </div>
       </nav>
-        <div className="row mx-3" style={{ "padding-top" : "10px" }}>
-          <div className="col-md-8 cart">
-            <div className="title">
-              <div className="row">
-                <div className="col align-self-center text-right">
-                  <h5>Products selected: {cart.length}</h5>
-                </div>
+      <div className="row mx-3" style={{ "padding-top": "10px" }}>
+        <div className="col-md-8 cart">
+          <div className="title">
+            <div className="row">
+              <div className="col align-self-center text-right">
+                <h5>Products selected: {cart.length}</h5>
               </div>
             </div>
-            <div>{listItems}</div>
           </div>
-          <div class="float-end">
-            <p class="mb-0 me-5 d-flex align-items-center">
-              <span class="lead fw-normal me-2">Order total:  ${cartTotal.toFixed(2)}</span>
-            </p>
-          </div>
+          <div>{listItems}</div>
         </div>
+        <div class="float-end">
+          <p class="mb-0 me-5 d-flex align-items-center">
+            <span class="lead fw-normal me-2">Order total:  ${cartTotal.toFixed(2)}</span>
+          </p>
+        </div>
+      </div>
 
       <div className="mx-3">
-      <hr
-            style={{ borderTop: "3px solid lightgrey" }}
+        <hr
+          style={{ borderTop: "3px solid lightgrey" }}
         ></hr>
         <h4 className="text-bg-dark py-2">Payment Information: </h4>
         <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
