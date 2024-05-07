@@ -139,11 +139,15 @@ function App() {
         }
       }
 
-      // fetch("http://localhost:8081/users", {
-      //   method: "POST",
-      //   headers: { "Content-type": "application/json" },
-      //   body: JSON.stringify(data),
-      // });
+      fetch("http://localhost:8081/users", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          "username": data.username,
+          "password": data.password,
+          "priv": "user"
+        }),
+      });
       // alert "registration successful."
       let newNode = document.createElement("div");
       newNode.setAttribute("role", "alert");
@@ -256,68 +260,86 @@ function App() {
 
     // renders all products on the page:
     const renderProducts = (product) => {
-      return (
-        <div id="col" class="row row-cols-md-3 g-3">
+      return (<div className="category-section fixed">
+        <div className="m-6 p-3 mt-10 m1-0 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 x1:gap-x-10" style={{ maxHeight: '800px', overflowY: 'scroll' }}>
           {product.map((el) => (
-            <button key={el.id} id={el.id} className="card text-bg-dark shadow-sm mx-1" onClick={() => handleClick(el.id)}>
-              <img src={el.src} className="card-img-top card-bottom" alt={el.alt} />
-              <div class="card-body">
-                <p class="card-text"> <strong>{el.name}</strong> <span className="text-green-600">${el.price}</span></p>
-                <p class="card-text">{el.rating[0].rate} ({el.rating[0].count})</p>
+            <div key={el.id} className="group relative shadow-lg">
+              <div className="min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+                <img
+                  src={el.src}
+                  alt={el.alt}
+                  className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                />
               </div>
-              <div className="flex justify-between">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(product)} > - </button>{" "}
-                  <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(product)}> + </button>
+              <div className="flex justify-between p-3">
+                <div>
+                  <h3 className="text-sm text-gray-700">
+                    <a onClick={() => handleClick(el.id)}>
+                      <span aria-hidden="true" className="absolute inset-0" />
+                      <span style={{ fontSize: '16px', fontWeight: '600' }}>{el.name}</span>
+                    </a>
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count})</p>
+                  <div className='flex justify-between'>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(el)} > - </button>{" "}
+                      <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(el)}> + </button>
+                    </div>
+                    <p>{howManyofThis(el.id)}</p>
+                  </div>
                 </div>
-                <p>{howManyofThis(product.id)}</p>
+
+                <p className="text-sm font-medium text-green-600">${el.price}</p>
               </div>
-            </button>
+            </div>
           ))}
-        </div>);
+        </div>
+      </div>);
     };
 
-    return (<div class="text-bg-dark">
+    return (<div className="text-bg-dark">
       <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
         <div className="container-fluid">
           <h1>FarmersRUs</h1>
-          <div class="float-right">
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={/*setUser({}) &&*/ () => updateHooks(0)}>Logout </a>
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(3)}>Cart </a>
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(5)}>About Us</a>
+          <div className="float-right">
+            <nav className="nav nav-masthead justify-content-center float-md-end">
+              <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+              <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
+              <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
+              {user.priv === "admin" &&
+              <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove User</a>}
             </nav>
           </div>
         </div>
       </nav>
 
-      <div class="d-flex mt-5 m-auto">
-        <div class="sidebar-nav flex-shrink-0 flex-column" style={{paddingRight : "10px"}}>
-          <span class="fs-5 fw-semibold">Filters</span>
-          <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+      <div className="d-flex mt-5 px-2">
+        <div className="sidebar-nav flex-shrink-0 flex-column">
+          <span className="fs-5 fw-semibold">Filters</span>
+          <ul className="list-unstyled ps-0">
+            <li className="mb-1">
+              <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                 data-bs-toggle="collapse" data-bs-target="#implement-collapse" aria-expanded="false">
                 Implements
               </button>
-              <div class="collapse" id="implement-collapse">
-                <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
+              <div className="collapse" id="implement-collapse">
+                <div className="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                  style={{ paddingTop: "20px", paddingBottom: "20px" }}>
                   <div class="list-group">
-                    <label class="list-group-item d-flex gap-2">
-                      <input id="seeder" class="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
+                    <label className="list-group-item d-flex gap-2">
+                      <input id="seeder" className="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
                       <span>
                         Seeder
                       </span>
                     </label>
-                    <label class="list-group-item d-flex gap-2">
-                      <input id="crop-care" class="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
+                    <label className="list-group-item d-flex gap-2">
+                      <input id="crop-care" className="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
                       <span>
                         Crop Care
                       </span>
                     </label>
                     <label class="list-group-item d-flex gap-2">
-                      <input id="planter" class="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
+                      <input id="planter" className="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
                       <span>
                         Planters
                       </span>
@@ -327,31 +349,31 @@ function App() {
               </div>
             </li>
 
-            <li class="border-top my-3"></li>
+            <li className="border-top my-3"></li>
 
-            <li class="mb-1">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+            <li className="mb-1">
+              <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                 data-bs-toggle="collapse" data-bs-target="#vehicle-collapse" aria-expanded="false">
                 Vehicles
               </button>
-              <div class="collapse" id="vehicle-collapse">
-                <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
-                  <div class="list-group">
-                    <label class="list-group-item d-flex gap-2">
-                      <input id="harvester" class="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
+              <div className="collapse" id="vehicle-collapse">
+                <div className="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                  style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+                  <div className="list-group">
+                    <label className="list-group-item d-flex gap-2">
+                      <input id="harvester" className="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
                       <span>
                         Harvester
                       </span>
                     </label>
-                    <label class="list-group-item d-flex gap-2">
-                      <input id="tractor" class="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
+                    <label className="list-group-item d-flex gap-2">
+                      <input id="tractor" className="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
                       <span>
                         Tractor
                       </span>
                     </label>
-                    <label class="list-group-item d-flex gap-2">
-                      <input class="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
+                    <label className="list-group-item d-flex gap-2">
+                      <input className="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
                       <span>
                         Red
                       </span>
@@ -370,7 +392,7 @@ function App() {
               </button>
               <div class="collapse" id="product-collapse">
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
+                  style={{ paddingTop: "20px", paddingBottom: "20px" }}>
                   <div class="list-group">
                     <label class="list-group-item d-flex gap-2">
                       <input id="seed" class="form-check-input flex-shrink-0" name="product" type="checkbox" value="" />
@@ -395,17 +417,13 @@ function App() {
               </div>
             </li>
           </ul>
+          <button class="btn-filter" onClick={filterQuery}>
+            Apply Filters
+          </button>
         </div>
-        <button class="btn-filter" onclick={filterQuery}>
-          Apply Filters
-        </button>
 
-        <div class="album py-5">
-          <div class="container mx-auto">
-            <div id="col" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-              {renderProducts(keywords)}
-            </div>
-          </div>
+        <div className="m1-5 x1:basis-4/5">
+          {renderProducts(keywords)}
         </div>
       </div>
     </div>);
@@ -438,6 +456,10 @@ function App() {
       })
     }
 
+    const print_specs = (el) => {
+
+    };
+
     const renderProduct = (oneProduct) => {
       return (<div class="container d-flex align-center py-10">
         <div>
@@ -447,7 +469,7 @@ function App() {
           <div class="float-left px-5">
             <h2>{oneProduct.title}</h2>
             <h4>
-              {/* Rating: {oneProduct[0].rating.rate} <span class="text-muted">({oneProduct[0].rating.count})</span> */}
+              Rating: {oneProduct.rating[0].rate} <span class="text-muted">({oneProduct.rating[0].count})</span>
             </h4>
             <h4 class="text-green-600">${oneProduct.price}</h4>
             <p class="card-text-sm w-50">{oneProduct.desc}</p>
@@ -458,8 +480,8 @@ function App() {
               })}
             </ul>
           </div>
-        </div>
-        <div>
+          <div>
+          <div>
           <h4>Comments:</h4>
           {oneProduct.comments.map((c) => {
             return (<div>
@@ -471,20 +493,24 @@ function App() {
         <form className="py-2 px-5" onSubmit={onSubmit}></form>
         <input id="comment_body" placeholder="Type a Review!" type="text" className="form-control w-80"></input>
         <button type="submit" class="btn btn-primary px-1">Submit</button>
+        </div>
+        </div>
       </div>);
-    }
+    };
 
-    return (<div className="text-bg-dark h-auto">
+    return (<div className="text-bg-dark">
       <nav class="navbar fixed navbar-expand-md navbar-dark text-bg-dark shadow py-2">
         <div className="container-fluid">
           <h1>FarmersRUs</h1>
           <div class="float-right">
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(1)}>Return</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => /*setUser({}) &&*/ updateHooks(0)}>Logout</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(3)}>Cart</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(5)}>About Us</a>
+          <nav className="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
             {user.priv === "admin" &&
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(6)}>Remove Users</a>}
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove Users</a>}
+          </nav>
           </div>
         </div>
       </nav>
@@ -727,7 +753,7 @@ function App() {
             <div class="float-right">
               <nav class="nav nav-masthead justify-content-center float-md-end">
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => /*setUser({}) &&*/ setViewer(0)}>Logout</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
               </nav>
@@ -767,6 +793,12 @@ function App() {
     </div>);
   }
 
+  /**
+   * Remove Users Page:
+   * This will allow an admin to remove a user
+   * from the FarmersRUs database, only accessible
+   * to admin users.
+   */
   function RemoveUsers() {
 
   }
