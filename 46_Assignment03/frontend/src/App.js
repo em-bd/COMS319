@@ -147,7 +147,6 @@ function App() {
 
     }
 
-
     return(<div class="h-auto">
       <nav class="navbar fixed navbar-expand-md navbar-dark text-bg-dark shadow py-2">
         <div className="container-fluid">

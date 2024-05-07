@@ -11,27 +11,23 @@ import { useForm } from "react-hook-form";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "Main";
-import Implements from "Implements";
-import Vehicles from "Vehicles";
-
-// viewer:
-const [viewer, setViewer] = useState(0);
-// login:
-const [user, setUser] = useState({});
-// Browse views:
-const [products, setProducts] = useState([]);
-const [oneProduct, setOneProduct] = useState({});
-// react forms:
-const { userRegister, handleUserSubmit, formState: { loginErrors } } = useForm();
-const { register, handleSubmit, formState: { errors } } = useForm();
-const [dataF, setDataF] = useState({});
-// shopping cart:
-const [cart, setCart] = useState([]);
-const [cartTotal, setCartTotal] = useState(0);
 
 function App() {
+  // viewer:
+  const [viewer, setViewer] = useState(0);
+  // login:
+  const [user, setUser] = useState({});
+  // get all user data:
+  const [allUsers, setAllUsers] = useState({});
+  // Browse views:
+  const [products, setProducts] = useState([]);
+  const [oneProduct, setOneProduct] = useState({});
+  // react forms:
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [dataF, setDataF] = useState({});
+  // shopping cart:
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
   // collect data from db:
   useEffect(() => {
     getAllProducts();
@@ -44,6 +40,18 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+  function getAllUsers() {
+    fetch("http://localhost:8081/users", {
+      method: "GET",
+      headers: { "Content-type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((data) => setAllUsers(data));
+  };
 
   // add to cart:
   const addToCart = (el) => {
@@ -72,34 +80,26 @@ function App() {
    * then the option 
    */
   function Main() {
-    let type = -1;
-    // get all user data:
-    const [allUsers, setAllUsers] = useState({});
-    fetch("http://localhost:8081/users", {
-      method: "GET",
-      headers: { "Content-type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((allUsers) = setAllUsers(allUsers));
-    const mainNode = document.getElementById("alert");
-    let newNode = document.createElement("div");
-    newNode.setAttribute("role", "alert");
+    var type = -1;
 
-    const login = (data) => {
+    function login(data) {
+      console.log("Attempting login.");
+      const mainNode = document.getElementById("alert");
       let login = false;
       // check if this username and password combination exists:
-      for (var u in allUsers) {
-        if (u.username === data.username && u.password === data.password) {
+      for (let u in allUsers) {
+        if (allUsers[u].username === data.username && allUsers[u].password === data.password) {
+          setUser(allUsers[u]);
           login = true;
           break;
         }
       }
-
-      mainNode.innerHTML = "";
       let newNode = document.createElement("div");
       newNode.setAttribute("role", "alert");
+
+      mainNode.innerHTML = "";
       // alert "invalid username or password."
-      if (!login) {
+      if (login === false) {
         newNode.className = "alert alert-danger";
         let text = document.createTextNode("Invalid Username or Password.");
         newNode.appendChild(text);
@@ -114,16 +114,17 @@ function App() {
         setTimeout(() => {
           console.log("Delaying for 1 second.");
         }, 1000);
-        setUser(u);
         setViewer(1);
       }
-    }
+    };
 
-    const register = (data) => {
+    function registerUser(data) {
+      console.log("Attempting registration.");
+      const mainNode = document.getElementById("alert");
       // check if this username already exists:
       for (let u in allUsers) {
         // alert "username already exists."
-        if (u.username === data.username) {
+        if (allUsers[u].username === data.username) {
           newNode.className = "alert alert-danger";
           let text = document.createTextNode("Username already exists.");
           newNode.appendChild(text);
@@ -132,12 +133,14 @@ function App() {
         }
       }
 
-      fetch("http://localhost:8081/users", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      // fetch("http://localhost:8081/users", {
+      //   method: "POST",
+      //   headers: { "Content-type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
       // alert "registration successful."
+      let newNode = document.createElement("div");
+      newNode.setAttribute("role", "alert");
       newNode.className = "alert alert-info";
       let text = document.createTextNode("Registraiton successful");
       newNode.appendChild(text);
@@ -145,18 +148,17 @@ function App() {
       setTimeout(() => {
         console.log("Delaying for 1 second.");
       }, 1000);
-      u.priv = "user";
-      setUser(u);
+      data.priv = "user";
+      setUser(data);
       setViewer(1);
-    }
+    };
 
     const onSubmit = (data) => {
-      // logging in:
-      if (type === 0)
-        login(data);
-      // registering:
-      else if (type === 1)
-        register(data);
+      login(data);
+    };
+
+    const onRegisterSubmit = (data) => {
+      registerUser(data);
     }
 
 
@@ -167,26 +169,26 @@ function App() {
         </div>
       </nav>
 
-      <div class="container-fluid">
-        <form id="my-form" className="py-4 justify-content-center" onSubmit={(handleUserSubmit(onSubmit))}>
+      <div className="container-fluid">
+        <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
-            <input {...userRegister("username", { required: true })}
+            <input {...register("username", { required: true })}
               placeholder="Username" type="text" className="form-control w-50">
-              {loginErrors.username && (
+              {errors.username && (
                 <p className="text-danger">Username required.</p>
               )}
             </input>
           </div>
           <div className="form-group py-1">
-            <input {...userRegister("password", { required: true })}
+            <input {...register("password", { required: true })}
               placeholder="Password" type="password" className="form-control w-50">
-              {loginErrors.password && (
+              {errors.password && (
                 <p className="text-danger">Password required.</p>
               )}
             </input>
           </div>
-          <button onClick={type = 0} type="submit" class="btn btn-primary py-1">Login</button>
-          <button pnClick={type = 1} type="submit" class="btn btn-primary py-1">Register</button>
+          <button type="submit" className="btn btn-primary py-1">Login</button>
+          <button onClick={handleSubmit(onRegisterSubmit)} type="submit" className="btn btn-primary py-1">Register</button>
           <div id="alert"></div>
         </form>
       </div>
@@ -223,7 +225,7 @@ function App() {
       let vals = ["  ", "  "];
       var i = 0;
 
-      if (checkboxes.length == 0) {
+      if (checkboxes.length === 0) {
         setKeywords(products);
         return;
       }
@@ -236,9 +238,9 @@ function App() {
 
       i = 0;
       let filtered = {};
-      for (i in vals) {
-        for (let k in products.filter(p => p.keywords.includes(vals[i]))) {
-          if (filtered.filter(f => f.id != k.id))
+      for (let j in vals) {
+        for (let k in products.filter(p => p.keywords.includes(vals[j]))) {
+          if (filtered.filter(f => f.id !== k.id))
             filtered.push(k);
         }
       }
@@ -284,7 +286,7 @@ function App() {
       </nav>
 
       <div class="d-flex mt-5 m-auto">
-        <div class="sidebar-nav flex-shrink-0 flex-column" style="padding-right : 10px;">
+        <div class="sidebar-nav flex-shrink-0 flex-column" style="padding-right : 10px">
           <span class="fs-5 fw-semibold">Filters</span>
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
@@ -391,13 +393,6 @@ function App() {
         <button class="btn-filter" onclick={filterQuery}>
           Apply Filters
         </button>
-        {(() => {
-          'use strict'
-          const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-          tooltipTriggerList.forEach(tooltipTriggerEl => {
-            new bootstrap.Tooltip(tooltipTriggerEl)
-          })
-        })()}
 
         <div class="album py-5">
           <div class="container mx-auto">
@@ -421,7 +416,7 @@ function App() {
     function onSubmit() {
       let comment_body = document.getElementById("comment_body");
 
-      if (comment_body.value.length == 0)
+      if (comment_body.value.length === 0)
         return;
 
       let newComment = {
@@ -482,8 +477,8 @@ function App() {
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setUser({}) && setViewer(0)}>Logout</a>
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(3)}>Cart</a>
             <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(5)}>About Us</a>
-            {u.priv === "admin" &&
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(6)}>Remove Users</a>}
+            {user.priv === "admin" &&
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(6)}>Remove Users</a>}
           </div>
         </div>
       </nav>
@@ -706,8 +701,8 @@ function App() {
       <p>Total Cost: ${cartTotal.toFixed(2)}</p>
       <p>Number of items: {cart.length}</p>
       {listItems}
-      <button onClick={() => updateHooks(0)} className="btn btn-secondary">Browse More</button>
-      <button onClick={() => updateHooks(1)} className="btn btn-primary">Back to Cart   </button>
+      <button onClick={setViewer(1)} className="btn btn-secondary">Browse More</button>
+      <button onClick={setViewer(3)} className="btn btn-primary">Back to Cart   </button>
     </div>);
   }
 
@@ -772,13 +767,13 @@ function App() {
 
   return (
     <div>
-      {viewer == 0 && <Main />}
-      {viewer == 1 && <Browse />}
-      {viewer == 2 && <OneProduct />}
-      {viewer == 3 && <Cart />}
-      {viewer == 4 && <Summary />}
-      {viewer == 5 && <AboutUs />}
-      {viewer == 6 && u.priv === "admin" && <RemoveUsers />}
+      {viewer === 0 && <Main />}
+      {viewer === 1 && <Browse />}
+      {viewer === 2 && <OneProduct />}
+      {viewer === 3 && <Cart />}
+      {viewer === 4 && <Summary />}
+      {viewer === 5 && <AboutUs />}
+      {viewer === 6 && user.priv === "admin" && <RemoveUsers />}
     </div>
   );
 }

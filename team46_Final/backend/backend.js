@@ -28,30 +28,83 @@ const dbName = "secomsfinal";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
+var id = 0;
+
 /**
  * GET request:
- * Read all products contained in the
- * Mongodb catalogue
+ * Read all users contained within
+ * the FarmersRUs database.
  */
-app.get("/:collection", async (req, res) => {
-
-    const collection = String(req.params.collection);
-
+app.get("/users", async (req, res) => {
     await client.connect();
     console.log("Node connected successfully to GET MongoDB");
 
     const query = {};
 
     const results = await db
-        .collection(collection)
+        .collection("users")
         .find(query)
         .limit(100)
         .toArray();
+
+    id = results.length + 1;
 
     console.log(results);
     res.status(200);
     res.send(results);
 });
+
+/**
+ * POST request:
+ * Used for registering a new user
+ * into the database.
+ */
+app.post("/users", async (req, res) => {
+    try {
+        await client.connect();
+        const values = Object.values(req.body);
+        console.log("Node connected successfully to POST MongoDB");
+
+        const newDocument = {
+            "id": (id++),
+            "username": values[0],
+            "password": values[1],
+            "priv": values[2]
+        }
+
+        console.log(newDocument);
+
+        // POST new user:
+        const results = await db
+            .collection("users")
+            .insertOne(newDocument);
+        res.status(200);
+        res.send(results);
+
+    } catch (error) {
+        console.error();
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+})
+
+app.get("/products", async (rec, res) => {
+    await client.connect();
+    console.log("Node connected successfully to GET MongoDB");
+
+    const query = {};
+
+    const results = await db
+        .collection("products")
+        .find(query)
+        .limit(100)
+        .toArray();
+
+    id = results.length + 1;
+
+    console.log(results);
+    res.status(200);
+    res.send(results);
+})
 
 /**
  * GET id request:
@@ -64,7 +117,7 @@ app.get("/:collection/:id", async (req, res) => {
 
     await client.connect();
     console.log("Node connected successfully to GET-id MongoDB");
-    const query = { "id" : productID };
+    const query = { "id": productID };
     const results = await db
         .collection(collection)
         .findOne(query);
@@ -74,109 +127,4 @@ app.get("/:collection/:id", async (req, res) => {
         res.send("Not found").status(404);
     else
         res.send(results).status(200);
-});
-
-/**
- * PUT request:
- * Updates the price of an object
- */
-app.put("/:collection/:id", async (req, res) => {
-    try {
-        const id = Number(req.params.id);
-        const collection = String(req.params.collection);
-        const query = { id : id };
-
-        await client.connect();
-        console.log("Product to update :", id);
-
-        console.log(req.body);
-
-        const updateData = {
-            $set: {
-                "id" : req.body.id,
-                "title" : req.body.title,
-                "price" : req.body.price,
-                "description" : req.body.description,
-                "category" : req.body.category,
-                "image" : req.body.image,
-                "rating" : {
-                    "rate" : req.body.rating.rate,
-                    "count" : req.body.rating.count
-                }
-            }
-        };
-
-        const options = { };
-        const results = await db
-            .collection(collection)
-            .updateOne(query, updateData, options);
-
-        if (results.matchedCount === 0)
-            return res.status(404).send({ message : 'Robot not found' });
-
-        res.status(200);
-        res.send(results);
-    } catch (error) {
-        console.error("Error updating product price :", error);
-        res.status(500).send({message : 'Internal Server Error'});
-    }
-});
-
-/**
- * POST request:
- * Will add a new product
- */
-app.post("/:collection", async (req, res) => {
-    try {
-        await client.connect();
-        const values = Object.values(req.body);
-        const collection = String(req.params.collection);
-
-        console.log(values);
-
-        const newDocument = {
-            "id" : values[4],
-            "title" : values[0],
-            "price" : Number(values[2]),
-            "description" : values[6],
-            "category" : values[3],
-            "image" : values[1],
-            "rating" : values[5]
-        };
-
-        console.log(newDocument);
-
-        const results = await db
-            .collection(collection)
-            .insertOne(newDocument);
-        res.status(200);
-        res.send(results);
-    } catch (error) {
-        console.error();
-        res.status(500).send({message : 'Internal Server Error'});
-    }
-});
-
-/**
- * DELETE request:
- * Deletes Product with the specified id
- */
-app.delete("/:collection/:id", async (req, res) => {
-    try {
-        const id = Number(req.params.id);
-        const collection = req.params.collection
-
-        await client.connect();
-        console.log("Product to delete :", id);
-
-        const query = { id : id };
-
-        // delete
-        const results = await db.collection(collection).deleteOne(query);
-        res.status(200);
-        res.send(results);
-    } catch (error) {
-        console.error("Error deleting product :", error);
-        res.status(500).send({ message : 'Internal Server Error' });
-    }
 });
