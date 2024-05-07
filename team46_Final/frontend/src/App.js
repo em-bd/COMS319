@@ -67,15 +67,19 @@ function App() {
   // remove from cart:
   const removeFromCart = (el) => {
     let itemFound = false;
-    const updatedCart = cart.filter((cartItem) => {
-      if (cartItem.id === el.id && !itemFound) {
+    let updatedCart = [...cart];
+    let idx = -1;
+    for (let i = updatedCart.length - 1; i >= 0; i--) {
+      if (updatedCart[i].id === el.id) {
         itemFound = true;
-        return false;
+        if (idx < i)
+          idx = i;
       }
-      return true;
-    });
-    if (itemFound)
+    }
+    if (itemFound) {
+      updatedCart.splice(idx, 1);
       setCart(updatedCart);
+    }
   }
 
   /**
