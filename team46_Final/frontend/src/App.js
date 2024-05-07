@@ -153,17 +153,17 @@ function App() {
         <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
             <input {...register("username", { required: true })}
-              placeholder="Username" type="text" className="form-control w-50"/>
-              {errors.username && (
-                <p className="text-danger">Username required.</p>
-              )}
+              placeholder="Username" type="text" className="form-control w-50" />
+            {errors.username && (
+              <p className="text-danger">Username required.</p>
+            )}
           </div>
           <div className="form-group py-1">
             <input {...register("password", { required: true })}
-              placeholder="Password" type="password" className="form-control w-50"/>
-              {errors.password && (
-                <p className="text-danger">Password required.</p>
-              )}
+              placeholder="Password" type="password" className="form-control w-50" />
+            {errors.password && (
+              <p className="text-danger">Password required.</p>
+            )}
           </div>
           <button type="submit" className="btn btn-primary py-1">Login</button>
           <button onClick={handleSubmit(onRegisterSubmit)} className="btn btn-primary px-1 py-1">Register</button>
@@ -433,7 +433,13 @@ function App() {
         body: JSON.stringify(oneProduct),
       })
 
-      
+      let commentsection = document.getElementById("commentsection");
+      let commentNode = document.createElement("div");
+      commentNode.innerHTML = `<div>
+          <h5>${newComment.user}</h5>
+          <p>${newComment.body}</p>
+        </div>`;
+      commentsection.appendChild(commentNode);
     }
 
     const renderProduct = (oneProduct) => {
@@ -459,12 +465,12 @@ function App() {
             <div>
               <h4>Comments:</h4>
               <div id="commentsection">
-              {oneProduct.comments.map((c) => {
-                return (<div>
-                  <h5>{c.user}</h5>
-                  <p>{c.body}</p>
-                </div>)
-              })}
+                {oneProduct.comments.map((c) => {
+                  return (<div>
+                    <h5>{c.user}</h5>
+                    <p>{c.body}</p>
+                  </div>)
+                })}
               </div>
             </div>
             <div className="py-3">
