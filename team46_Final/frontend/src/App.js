@@ -153,14 +153,14 @@ function App() {
         <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
             <input {...register("username", { required: true })}
-              placeholder="Username" type="text" className="form-control" />
+              placeholder="Username" type="text" className="form-control w-50"/>
               {errors.username && (
                 <p className="text-danger">Username required.</p>
               )}
           </div>
           <div className="form-group py-1">
             <input {...register("password", { required: true })}
-              placeholder="Password" type="password" className="form-control"/>
+              placeholder="Password" type="password" className="form-control w-50"/>
               {errors.password && (
                 <p className="text-danger">Password required.</p>
               )}
