@@ -307,7 +307,7 @@ function App() {
               <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
               <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
               {user.priv === "admin" &&
-              <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove User</a>}
+                <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove User</a>}
             </nav>
           </div>
         </div>
@@ -456,44 +456,41 @@ function App() {
       })
     }
 
-    const print_specs = (el) => {
-
-    };
-
     const renderProduct = (oneProduct) => {
-      return (<div class="container d-flex align-center py-10">
+      return (<div className="container" style={{ "margin-top": "10px" }}>
         <div>
-          <div>
-            <img class="h-100 w-100 img-fluid" src={oneProduct.src} width="100" alt={oneProduct.alt} />
+          <div className="align-center d-flex py-4">
+            <img className="img-fluid" src={oneProduct.src} alt={oneProduct.alt} style={{ "height": "400px", "borderRadius": "5px" }} />
+            <div className="float-right px-3">
+              <h2>{oneProduct.title}</h2>
+              <h4>
+                Rating: {oneProduct.rating[0].rate} ({oneProduct.rating[0].count})
+              </h4>
+              <h4 class="text-green-600">${oneProduct.price}</h4>
+              <p class="card-text-sm w-50">{oneProduct.desc}</p>
+              <h5>Specifications:</h5>
+              <ul>
+                {oneProduct.specs.map((s) => {
+                  return (<li>{s}</li>);
+                })}
+              </ul>
+            </div>
           </div>
-          <div class="float-left px-5">
-            <h2>{oneProduct.title}</h2>
-            <h4>
-              Rating: {oneProduct.rating[0].rate} <span class="text-muted">({oneProduct.rating[0].count})</span>
-            </h4>
-            <h4 class="text-green-600">${oneProduct.price}</h4>
-            <p class="card-text-sm w-50">{oneProduct.desc}</p>
-            <h5>Specifications:</h5>
-            <ul>
-              {oneProduct.specs.map((s) => {
-                return (<li>s</li>);
+          <div>
+            <div>
+              <h4>Comments:</h4>
+              {oneProduct.comments.map((c) => {
+                return (<div>
+                  <h5>c.user</h5>
+                  <p>c.body</p>
+                </div>)
               })}
-            </ul>
+            </div>
+            <form className="py-3" onSubmit={onSubmit}>
+              <textarea id="comment_body" placeholder="Leave a Review!" type="text" className="form-control" style={{ "width" : "400px", "height" : "112.8px" }}></textarea>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <div>
-          <div>
-          <h4>Comments:</h4>
-          {oneProduct.comments.map((c) => {
-            return (<div>
-              <h5>c.user</h5>
-              <p>c.body</p>
-            </div>)
-          })}
-        </div>
-        <form className="py-2 px-5" onSubmit={onSubmit}></form>
-        <input id="comment_body" placeholder="Type a Review!" type="text" className="form-control w-80"></input>
-        <button type="submit" class="btn btn-primary px-1">Submit</button>
-        </div>
         </div>
       </div>);
     };
@@ -503,18 +500,18 @@ function App() {
         <div className="container-fluid">
           <h1>FarmersRUs</h1>
           <div class="float-right">
-          <nav className="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
-            {user.priv === "admin" &&
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove Users</a>}
-          </nav>
+            <nav className="nav nav-masthead justify-content-center float-md-end">
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
+              {user.priv === "admin" &&
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(6)}>Remove Users</a>}
+            </nav>
           </div>
         </div>
       </nav>
-      <div class="container">
+      <div className="container">
         {renderProduct(oneProduct)}
       </div>
     </div>);

@@ -28,7 +28,8 @@ const dbName = "secomsfinal";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
-var id = 0;
+var lastuid = 0;
+var totproductid = 0;
 
 /**
  * GET request:
@@ -47,7 +48,7 @@ app.get("/users", async (req, res) => {
         .limit(100)
         .toArray();
 
-    id = results.length + 1;
+    lastuid = results[results.length - 1].id + 1;
 
     console.log(results);
     res.status(200);
@@ -66,7 +67,7 @@ app.post("/users", async (req, res) => {
         console.log("Node connected successfully to POST MongoDB");
 
         const newDocument = {
-            "id": (id++),
+            "id": (lastuid++),
             "username": values[0],
             "password": values[1],
             "priv": values[2]
@@ -87,6 +88,11 @@ app.post("/users", async (req, res) => {
     }
 })
 
+/**
+ * GET request:
+ * Gets all products in the database for
+ * FarmersRUs.
+ */
 app.get("/products", async (rec, res) => {
     await client.connect();
     console.log("Node connected successfully to GET MongoDB");
@@ -99,7 +105,7 @@ app.get("/products", async (rec, res) => {
         .limit(100)
         .toArray();
 
-    id = results.length + 1;
+    totproductid = results.length + 1;
 
     console.log(results);
     res.status(200);
@@ -107,19 +113,20 @@ app.get("/products", async (rec, res) => {
 })
 
 /**
- * GET id request:
- * Reads product with that specific id
+ * GET request:
+ * Gets product of the specified ID
+ * from the FarmersRUs database.
  */
-app.get("/:collection/:id", async (req, res) => {
-    const productID = Number(req.params.id);
-    const collection = String(req.params.collection);
-    console.log("Product to find :", productID);
+app.get("/products/:id", async (req, res) => {
+    const pid = Number(req.params.id);
+    console.log("Product to find :", pid);
 
     await client.connect();
-    console.log("Node connected successfully to GET-id MongoDB");
-    const query = { "id": productID };
+    console.log("Node connected successfulyl to GET-id MongoDB");
+    const query = { "id": pid };
+
     const results = await db
-        .collection(collection)
+        .collection("products")
         .findOne(query);
 
     console.log("Results :", results);
@@ -127,4 +134,103 @@ app.get("/:collection/:id", async (req, res) => {
         res.send("Not found").status(404);
     else
         res.send(results).status(200);
-});
+})
+
+/**
+ * PUT request:
+ * Updates a product of the specified
+ * ID to the FarmersRUs database.
+ */
+app.put("/products/:id", async (req, res) => {
+    try {
+        const pid = Number(req.params.id);
+        console.log("Product to update: ", pid);
+        console.log(req.body);
+
+        await client.connect();
+        console.log("Node connected successfulyl to GET-id MongoDB");
+
+        const updateData = {
+            $set: {
+                "id": req.body.id,
+                "src": req.body.src,
+                "name": req.body.title,
+                "alt": req.body.alt,
+                "keywords": req.body.keywords,
+                "rating": req.body.rating,
+                "comments": req.body.comments,
+                "price": req.body.price,
+                "desc": req.body.desc,
+                "specs": req.body.specs,
+            }
+        };
+
+        const query = { "id": pid };
+        const options = {};
+        const results = await db
+            .collection("products")
+            .updateOne(query, updateData, options);
+
+        // bad result:
+        if (results.matchedCount === 0)
+            return res.status(404).send({ message: 'Product not found' });
+
+        // good result, send result back:
+        res.send(results).status(200);
+    } catch (error) {
+        console.error("Error updating product price :", error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+})
+
+/**
+ * DELETE request:
+ * Deletes specified user from the
+ * FarmersRUs database.
+ */
+app.delete("/users/:id", async (req, res) => {
+    try {
+        const uid = Number(req.params.id);
+
+        await client.connect();
+        console.log("User ID to delete :", id);
+
+        const query = { id : uid };
+
+        // delete user:
+        const results = await db
+            .collection("users")
+            .deleteOne(query);
+        
+        if (results.matchedCount === 0)
+            res.status(404).send({ message: 'User not found' });
+
+        res.status(200).send(results);
+    } catch (error) {
+        console.error("Error deleting product :", error);
+        res.status(500).send({ message : 'Internal Server Error' });
+    }
+})
+
+// /**
+//  * GET id request:
+//  * Reads product with that specific id
+//  */
+// app.get("/:collection/:id", async (req, res) => {
+//     const productID = Number(req.params.id);
+//     const collection = String(req.params.collection);
+//     console.log("Product to find :", productID);
+
+//     await client.connect();
+//     console.log("Node connected successfully to GET-id MongoDB");
+//     const query = { "id": productID };
+//     const results = await db
+//         .collection(collection)
+//         .findOne(query);
+
+//     console.log("Results :", results);
+//     if (!results)
+//         res.send("Not found").status(404);
+//     else
+//         res.send(results).status(200);
+// });
