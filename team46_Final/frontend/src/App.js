@@ -55,6 +55,10 @@ function App() {
       .then((data) => setAllUsers(data));
   };
 
+  useEffect(() => {
+    reset({});
+  }, []);
+
   // add to cart:
   const addToCart = (el) => {
     setCart([...cart, el]);
@@ -263,11 +267,17 @@ function App() {
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count}) ${el.price}</p>
                     <div className='flex justify-between'>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(el)} > - </button>{" "}
-                        <button type="button" class="btn btn-outline-secondary" onClick={() => addToCart(el)}> + </button>
+                      <div class="row main align-items-center">
+                        <div class="col-3">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-outline-danger" onClick={() => removeFromCart(el)} > - </button>{" "}
+                            <button type="button" class="btn btn-outline-success" onClick={() => addToCart(el)}> + </button>
+                          </div>
+                        </div>
+                        <div class="col">
+                          {howManyofThis(el.id)}
+                        </div>
                       </div>
-                      <p>{howManyofThis(el.id)}</p>
                     </div>
                   </div>
                 </div>
@@ -475,12 +485,12 @@ function App() {
             </div>
             <div className="py-3">
               <div>
-              <textarea id="comment_body" placeholder="Leave a Review!" type="text" style={{ "width": "400px", "height": "112.8px" }}></textarea>
+                <textarea id="comment_body" placeholder="Leave a Review!" type="text" style={{ "width": "400px", "height": "112.8px" }}></textarea>
               </div>
               <div>
-              <button onClick={submitComment} class="btn btn-primary">Submit</button>
+                <button onClick={submitComment} class="btn btn-primary">Submit</button>
               </div>
-              
+
 
             </div>
           </div>
@@ -521,7 +531,6 @@ function App() {
    * bottom of the page for payment information.
    */
   function Cart() {
-
     var foundCart = [];
     for (let i of cart) {
       if (!foundCart.includes(i)) {
@@ -569,6 +578,14 @@ function App() {
     };
     useEffect(() => {
       total();
+    });
+    const eraseCart = () => {
+      for (let i in cart) {
+        removeFromCart(i);
+      }
+    }
+    useEffect(() => {
+      eraseCart();
     });
 
     const onSubmit = (data) => {
@@ -706,35 +723,60 @@ function App() {
     }
 
     // show selected products:
-    const listItems = foundCart.map((el) => (
-      <div class="row border-top border-bottom" key={el.id}>
-        <div class="row main align-items-center">
-          <div class="col-2">
-            <img class="img-fluid" src={el.src} alt={el.alt} />
+    const listItems = (cart) => {
+      return (<div>
+        {cart.map((el) => {
+          <div class="row mx-auto" key={el.id} style={{ paddingBottom: "10px" }}>
+            <div class="row main align-items-center">
+              <div class="col-2">
+                <img class="img-fluid" src={el.src} alt={el.alt} />
+              </div>
+              <div class="col">
+                <span class="row fs-5 fw-semibold px-5">{el.name}</span>
+              </div>
+              <div class="col">
+                ${el.price}<span class="close">&nbsp;&#10005;</span> {howManyofThis(el.id)}
+              </div>
+            </div>
           </div>
-          <div class="col">
-            <div class="row text-muted">{el.name}</div>
-          </div>
-          <div class="col">
-            ${el.price} <span class="close">&nbsp;&#10005;</span>{howManyofThis(el.id)}
-          </div>
-        </div>
-      </div>
-    ));
+        })}
+      </div>);
+    };
 
     // include a list of the items purchased as well
-    return (<div>
-      <h1>Payment summary:</h1>
-      <h3>{dataF.fullName}</h3>
-      <p>{dataF.email}</p>
-      <p>{dataF.creditCard}</p>
-      <p>{dataF.address}</p>
-      <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
-      <p>Total Cost: ${cartTotal.toFixed(2)}</p>
-      <p>Number of items: {cart.length}</p>
-      {listItems}
-      <button onClick={() => setViewer(1)} className="btn btn-secondary">Browse More</button>
-      <button onClick={() => setViewer(3)} className="btn btn-primary">Back to Cart   </button>
+    return (<div class="text-bg-dark">
+      <div>
+        <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+          <div className="container-fluid">
+            <h1>FarmersRUs</h1>
+            <div class="float-right">
+              <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setViewer(1))}>Browse More</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setViewer(3))}>Cart</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setViewer(5))}>About Us</a>
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div className="container-fluid px-4" style={{ paddingTop: "5px" }}>
+        <h1>Payment Summary:</h1>
+        <div className="px-5">
+          <h4>{dataF.fullName}</h4>
+          <p>{dataF.email}</p>
+          <p>{dataF.creditCard}</p>
+          <p>{dataF.address}</p>
+          <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
+        </div>
+        <p>Total Cost: ${cartTotal.toFixed(2)}</p>
+        <p>Number of items: {cart.length}</p>
+        <hr className="my-2 mx-1"
+          style={{ borderTop: "1px solid lightgrey" }}
+        ></hr>
+        {listItems(cart)}
+      </div>
     </div>);
   }
 
@@ -748,11 +790,11 @@ function App() {
       <div>
         <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
           <div className="container-fluid">
-            <h1>About Us</h1>
+            <h1>FarmersRUs</h1>
             <div class="float-right">
               <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
                 <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
               </nav>
