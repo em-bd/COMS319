@@ -154,7 +154,7 @@ app.put("/products/:id", async (req, res) => {
             $set: {
                 "id": req.body.id,
                 "src": req.body.src,
-                "name": req.body.title,
+                "name": req.body.name,
                 "alt": req.body.alt,
                 "keywords": req.body.keywords,
                 "rating": req.body.rating,
