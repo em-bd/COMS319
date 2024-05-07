@@ -28,6 +28,12 @@ function App() {
   // shopping cart:
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+
+
+  function updateHooks(i) {
+    setViewer(i);
+  }
+
   // collect data from db:
   useEffect(() => {
     getAllProducts();
@@ -277,16 +283,16 @@ function App() {
           <h1>FarmersRUs</h1>
           <div class="float-right">
             <nav class="nav nav-masthead justify-content-center float-md-end">
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setUser({}) && setViewer(0)}>Logout </a>
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(3)}>Cart </a>
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(5)}>About Us</a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={/*setUser({}) &&*/ () => updateHooks(0)}>Logout </a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(3)}>Cart </a>
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(5)}>About Us</a>
             </nav>
           </div>
         </div>
       </nav>
 
       <div class="d-flex mt-5 m-auto">
-        <div class="sidebar-nav flex-shrink-0 flex-column" style="padding-right : 10px">
+        <div class="sidebar-nav flex-shrink-0 flex-column" style={{paddingRight : "10px"}}>
           <span class="fs-5 fw-semibold">Filters</span>
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
@@ -296,7 +302,7 @@ function App() {
               </button>
               <div class="collapse" id="implement-collapse">
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style="padding-top : 20px; padding-bottom : 20px;">
+                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
                   <div class="list-group">
                     <label class="list-group-item d-flex gap-2">
                       <input id="seeder" class="form-check-input flex-shrink-0" name="implement" type="checkbox" value="" />
@@ -330,7 +336,7 @@ function App() {
               </button>
               <div class="collapse" id="vehicle-collapse">
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style="padding-top : 20px; padding-bottom : 20px;">
+                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
                   <div class="list-group">
                     <label class="list-group-item d-flex gap-2">
                       <input id="harvester" class="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
@@ -364,7 +370,7 @@ function App() {
               </button>
               <div class="collapse" id="product-collapse">
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
-                  style="padding-top : 20px; padding-bottom : 20px;">
+                  style={{paddingTop : "20px", paddingBottom : "20px"}}>
                   <div class="list-group">
                     <label class="list-group-item d-flex gap-2">
                       <input id="seed" class="form-check-input flex-shrink-0" name="product" type="checkbox" value="" />
@@ -441,7 +447,7 @@ function App() {
           <div class="float-left px-5">
             <h2>{oneProduct.title}</h2>
             <h4>
-              Rating: {oneProduct[0].rating.rate} <span class="text-muted">({oneProduct[0].rating.count})</span>
+              {/* Rating: {oneProduct[0].rating.rate} <span class="text-muted">({oneProduct[0].rating.count})</span> */}
             </h4>
             <h4 class="text-green-600">${oneProduct.price}</h4>
             <p class="card-text-sm w-50">{oneProduct.desc}</p>
@@ -473,12 +479,12 @@ function App() {
         <div className="container-fluid">
           <h1>FarmersRUs</h1>
           <div class="float-right">
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(1)}>Return</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setUser({}) && setViewer(0)}>Logout</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(3)}>Cart</a>
-            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(5)}>About Us</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(1)}>Return</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => /*setUser({}) &&*/ updateHooks(0)}>Logout</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(3)}>Cart</a>
+            <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(5)}>About Us</a>
             {user.priv === "admin" &&
-              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(6)}>Remove Users</a>}
+              <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => updateHooks(6)}>Remove Users</a>}
           </div>
         </div>
       </nav>
@@ -499,6 +505,7 @@ function App() {
    * bottom of the page for payment information.
    */
   function Cart() {
+
     var foundCart = [];
     for (let i of cart) {
       if (!foundCart.includes(i)) {
@@ -558,7 +565,7 @@ function App() {
       <nav class="navbar fixed navbar-expand-md navbar-light bg-white shadow py-2">
         <div className="container-fluid">
           <p>FarmersRUs</p>
-          <button type="button" class="btn btn-primary justify-content-end" onClick={setViewer(1)}>Return</button>
+          <button type="button" class="btn btn-primary justify-content-end" onClick={() => setViewer(1)}>Return</button>
         </div>
       </nav>
       <div class="card">
@@ -701,8 +708,8 @@ function App() {
       <p>Total Cost: ${cartTotal.toFixed(2)}</p>
       <p>Number of items: {cart.length}</p>
       {listItems}
-      <button onClick={setViewer(1)} className="btn btn-secondary">Browse More</button>
-      <button onClick={setViewer(3)} className="btn btn-primary">Back to Cart   </button>
+      <button onClick={() => setViewer(1)} className="btn btn-secondary">Browse More</button>
+      <button onClick={() => setViewer(3)} className="btn btn-primary">Back to Cart   </button>
     </div>);
   }
 
@@ -719,10 +726,10 @@ function App() {
             <h1>About Us</h1>
             <div class="float-right">
               <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(1)}>Return</a>
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setUser({}) && setViewer(0)}>Logout</a>
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(3)}>Cart</a>
-                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={setViewer(5)}>About Us</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => /*setUser({}) &&*/ setViewer(0)}>Logout</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(3)}>Cart</a>
+                <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
               </nav>
             </div>
           </div>
