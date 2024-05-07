@@ -236,6 +236,7 @@ function App() {
                   src={el.src}
                   alt={el.alt}
                   className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                  width={400}
                 />
               </div>
               <div className="flex justify-between p-3">
@@ -764,6 +765,55 @@ function App() {
    * to admin users.
    */
   function RemoveUsers() {
+
+
+    function deleteUser(id) {
+
+      fetch("http://localhost:8081/users/"+id, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+    })
+
+      getAllUsers()
+      
+    }
+
+    const renderUsers = (user) => {
+      return (<div className="category-section fixed">
+        <div className="m-6 p-3 mt-10 m1-0 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 x1:gap-x-10" style={{ maxHeight: '800px', overflowY: 'scroll' }}>
+          {user.map((el) => (
+            <div key={el.id} className="group relative shadow-lg">
+              <div className="min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+                <h3>{el.username}</h3>
+                {el.priv}     <button onClick={() => deleteUser(el.id)}>Delete User?</button>
+                </div>
+                </div>
+
+
+          ))}
+        </div>
+      </div>);
+    };
+
+
+
+    return (<div className="text-bg-dark">
+    <nav className="navbar fixed navbar-expand-md navbar-dark bg-gray shadow py-2">
+      <div className="container-fluid">
+        <h1>FarmersRUs</h1>
+        <div className="float-right">
+          <nav className="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(1)}>Return</a>
+            <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={(() => setUser({})) && (() => setViewer(0))}>Logout</a>
+            <a className="nav-link fw-bold py-1 px-2 text-bg-dark" onClick={() => setViewer(5)}>About Us</a>
+          </nav>
+        </div>
+      </div>
+    </nav>
+
+    {renderUsers(allUsers)}
+    </div>
+    )
 
   }
 
