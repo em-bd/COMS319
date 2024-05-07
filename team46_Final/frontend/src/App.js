@@ -23,16 +23,11 @@ function App() {
   const [products, setProducts] = useState([]);
   const [oneProduct, setOneProduct] = useState({});
   // react forms:
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const [dataF, setDataF] = useState({});
   // shopping cart:
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-
-
-  function updateHooks(i) {
-    setViewer(i);
-  }
 
   // collect data from db:
   useEffect(() => {
@@ -88,9 +83,8 @@ function App() {
   function Main() {
     var type = -1;
 
-    function login(data) {
+    const login = (data) => {
       console.log("Attempting login.");
-      const mainNode = document.getElementById("alert");
       let login = false;
       // check if this username and password combination exists:
       for (let u in allUsers) {
@@ -100,41 +94,23 @@ function App() {
           break;
         }
       }
-      let newNode = document.createElement("div");
-      newNode.setAttribute("role", "alert");
-
-      mainNode.innerHTML = "";
       // alert "invalid username or password."
       if (login === false) {
-        newNode.className = "alert alert-danger";
-        let text = document.createTextNode("Invalid Username or Password.");
-        newNode.appendChild(text);
-        mainNode.appendChild(newNode);
+
       }
       // alert "login successful."
       else {
-        newNode.className = "alert alert-success";
-        let text = document.createTextNode("Login successful.");
-        newNode.appendChild(text);
-        mainNode.appendChild(newNode);
-        setTimeout(() => {
-          console.log("Delaying for 1 second.");
-        }, 1000);
+
         setViewer(1);
       }
     };
 
-    function registerUser(data) {
+    const registerUser = (data) => {
       console.log("Attempting registration.");
-      const mainNode = document.getElementById("alert");
       // check if this username already exists:
       for (let u in allUsers) {
         // alert "username already exists."
         if (allUsers[u].username === data.username) {
-          // newNode.className = "alert alert-danger";
-          // let text = document.createTextNode("Username already exists.");
-          // newNode.appendChild(text);
-          // mainNode.appendChild(newNode);
           return;
         }
       }
@@ -149,15 +125,6 @@ function App() {
         }),
       });
       // alert "registration successful."
-      let newNode = document.createElement("div");
-      newNode.setAttribute("role", "alert");
-      newNode.className = "alert alert-info";
-      let text = document.createTextNode("Registraiton successful");
-      newNode.appendChild(text);
-      mainNode.appendChild(newNode);
-      setTimeout(() => {
-        console.log("Delaying for 1 second.");
-      }, 1000);
       data.priv = "user";
       setUser(data);
       setViewer(1);
@@ -199,8 +166,8 @@ function App() {
           </div>
           <button type="submit" className="btn btn-primary py-1">Login</button>
           <button onClick={handleSubmit(onRegisterSubmit)} type="submit" className="btn btn-primary py-1">Register</button>
-          <div id="alert"></div>
         </form>
+        <div id="alert_message"></div>
       </div>
     </div>);
   }
