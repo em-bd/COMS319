@@ -542,6 +542,7 @@ function App() {
       }
     }
 
+
     // count how many products of the same id:
     function howManyofThis(id) {
       let hmot = cart.filter((cartItem) => cartItem.id === id);
