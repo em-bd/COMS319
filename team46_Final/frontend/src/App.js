@@ -265,12 +265,14 @@ function App() {
           {product.map((el) => (
             <div key={el.id} className="group relative shadow-lg">
               <div className="min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+              <a onClick={() => handleClick(el.id)}>
                 <img
                   src={el.src}
                   alt={el.alt}
                   className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                   width={400}
                 />
+               </a>
               </div>
               <div className="flex justify-between p-3">
                 <div>
@@ -482,8 +484,8 @@ function App() {
               <h4>Comments:</h4>
               {oneProduct.comments.map((c) => {
                 return (<div>
-                  <h5>c.user</h5>
-                  <p>c.body</p>
+                  <h5>{c.user}</h5>
+                  <p>{c.body}</p>
                 </div>)
               })}
             </div>
