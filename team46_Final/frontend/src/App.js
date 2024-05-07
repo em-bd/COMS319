@@ -21,9 +21,10 @@ function App() {
   const [allUsers, setAllUsers] = useState({});
   // Browse views:
   const [products, setProducts] = useState([]);
+  // single product:
   const [oneProduct, setOneProduct] = useState({});
   // react forms:
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [dataF, setDataF] = useState({});
   // shopping cart:
   const [cart, setCart] = useState([]);
@@ -81,8 +82,7 @@ function App() {
    * then the option 
    */
   function Main() {
-    var type = -1;
-
+    // logging in as a user attempt:
     const login = (data) => {
       console.log("Attempting login.");
       let login = false;
@@ -105,12 +105,14 @@ function App() {
       }
     };
 
+    // registering a new user attempt:
     const registerUser = (data) => {
       console.log("Attempting registration.");
       // check if this username already exists:
       for (let u in allUsers) {
         // alert "username already exists."
         if (allUsers[u].username === data.username) {
+          console.log("Username already exists.");
           return;
         }
       }
@@ -150,22 +152,20 @@ function App() {
         <form id="my-form" className="py-4 mx-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group py-1">
             <input {...register("username", { required: true })}
-              placeholder="Username" type="text" className="form-control w-50">
+              placeholder="Username" type="text" className="form-control" />
               {errors.username && (
                 <p className="text-danger">Username required.</p>
               )}
-            </input>
           </div>
           <div className="form-group py-1">
             <input {...register("password", { required: true })}
-              placeholder="Password" type="password" className="form-control w-50">
+              placeholder="Password" type="password" className="form-control"/>
               {errors.password && (
                 <p className="text-danger">Password required.</p>
               )}
-            </input>
           </div>
           <button type="submit" className="btn btn-primary py-1">Login</button>
-          <button onClick={handleSubmit(onRegisterSubmit)} type="submit" className="btn btn-primary py-1">Register</button>
+          <button onClick={handleSubmit(onRegisterSubmit)} className="btn btn-primary px-1 py-1">Register</button>
         </form>
         <div id="alert_message"></div>
       </div>
@@ -181,13 +181,12 @@ function App() {
    * what they want.
    */
   function Browse() {
+    const [keywords, setKeywords] = useState(products);
     // display how many of this item:
     function howManyofThis(id) {
       let hmot = cart.filter((cartItem) => cartItem.id === id);
       return hmot.length;
     }
-    // product filtering useState:
-    const [keywords, setKeywords] = useState(products);
 
     // clicked on a single product, do inflated view:
     const handleClick = (productID) => {
@@ -213,12 +212,23 @@ function App() {
         }
       })
 
+      console.log(vals);
+
+      if (i === 0) {
+        setKeywords(products);
+        return;
+      }
+
       i = 0;
-      let filtered = {};
+      let filtered = [];
       for (let j in vals) {
-        for (let k in products.filter(p => p.keywords.includes(vals[j]))) {
-          if (filtered.filter(f => f.id !== k.id))
-            filtered.push(k);
+        for (let k in products) {
+          for (let l in products[k].keywords) {
+            if (products[k].keywords[l] === vals[j] 
+              && ((filtered.length === 0) 
+              || (filtered.length > 0 && filtered.filter((f) => (f.id !== products[k].id).length === 0))))
+              filtered.push(products[k]);
+          }
         }
       }
 
@@ -235,11 +245,10 @@ function App() {
               <div>
               <a onClick={() => handleClick(el.id)}>
                 <img
-                class = "card-img-top card-img-bottom"
                   src={el.src}
                   alt={el.alt}
-                  // className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-
+                  className="card-img-bottom card-img-top"
+                  style={{ "borderRadius" : "5px" }}
                 />
                </a>
               </div>
@@ -251,7 +260,7 @@ function App() {
                       <span style={{ fontSize: '16px', fontWeight: '600' }}>{el.name}</span>
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count})</p>
+                  <p className="mt-1 text-sm text-gray-500">Rating: {el.rating[0].rate} ({el.rating[0].count}) ${el.price}</p>
                   <div className='flex justify-between'>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-secondary" onClick={() => removeFromCart(el)} > - </button>{" "}
@@ -260,8 +269,6 @@ function App() {
                     <p>{howManyofThis(el.id)}</p>
                   </div>
                 </div>
-
-                <p className="text-sm font-medium text-green-600">${el.price}</p>
               </div>
             </div>
           ))}
@@ -292,7 +299,7 @@ function App() {
           <span className="lead fw-semibold">Filters</span>
           <ul className="list-unstyled ps-0">
             <li className="mb-1">
-            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "padding-left" : "5px" }}>
+            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
                 Implements
               </span>
               <div id="implement-collapse">
@@ -325,7 +332,7 @@ function App() {
             <li className="border-top my-3"></li>
 
             <li className="mb-1">
-              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "padding-left" : "5px" }}>
+              <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
                 Vehicles
               </span>
               <div id="vehicle-collapse">
@@ -345,9 +352,9 @@ function App() {
                       </span>
                     </label>
                     <label className="list-group-item d-flex gap-2">
-                      <input className="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
+                      <input id="baler" className="form-check-input flex-shrink-0" name="vehicle" type="checkbox" value="" />
                       <span>
-                        Red
+                        Balers
                       </span>
                     </label>
                   </div>
@@ -358,7 +365,7 @@ function App() {
             <li class="border-top my-3"></li>
 
             <li class="mb-1">
-            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "padding-left" : "5px" }}>
+            <span className="fs-5 fw-normal d-inline-flex align-items-center" style={{ "paddingLeft" : "5px" }}>
                 Products
               </span>
               <div id="product-collapse">
@@ -392,10 +399,7 @@ function App() {
             Apply Filters
           </button>
         </div>
-
-
           {renderProducts(keywords)}
-
       </div>
     </div>);
   }
