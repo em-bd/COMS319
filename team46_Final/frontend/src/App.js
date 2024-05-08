@@ -17,6 +17,8 @@ function App() {
   const [viewer, setViewer] = useState(0);
   // login:
   const [user, setUser] = useState({});
+  const [alert, setAlert] = useState("");
+  const [alertType, setAlertType] = useState("");
   // get all user data:
   const [allUsers, setAllUsers] = useState({});
   // Browse views:
@@ -91,7 +93,7 @@ function App() {
    */
   function Main() {
     // logging in as a user attempt:
-    const login = (data) => {
+    function login(data) {
       console.log("Attempting login.");
       let login = false;
       // check if this username and password combination exists:
@@ -104,23 +106,27 @@ function App() {
       }
       // alert "invalid username or password."
       if (login === false) {
-
+        setAlert("Invalid username or password.");
+        setAlertType("alert alert-danger w-50");
       }
       // alert "login successful."
       else {
-
+        setAlert("Login successful.");
+        setAlertType("alert alert-success w-50");
         setViewer(1);
       }
     };
 
     // registering a new user attempt:
-    const registerUser = (data) => {
+    function registerUser(data) {
       console.log("Attempting registration.");
       // check if this username already exists:
       for (let u in allUsers) {
         // alert "username already exists."
         if (allUsers[u].username === data.username) {
           console.log("Username already exists.");
+          setAlert("Username already exists.");
+          setAlertType("alert alert-danger w-50");
           return;
         }
         getAllUsers()
@@ -136,6 +142,8 @@ function App() {
         }),
       });
       // alert "registration successful."
+      setAlert("Registration successful.");
+      setAlertType("alert alert-info w-50");
       data.priv = "user";
       setUser(data);
       setViewer(1);
@@ -176,7 +184,7 @@ function App() {
           <button type="submit" className="btn btn-primary py-1">Login</button>
           <button onClick={handleSubmit(onRegisterSubmit)} className="btn btn-primary px-1 py-1">Register</button>
         </form>
-        <div id="alert_message"></div>
+        <div id="alert_message" className={alertType}>{alert}</div>
       </div>
     </div>);
   }
@@ -728,9 +736,8 @@ function App() {
     }
 
     // show selected products:
-    const listItems = (cart) => {
+    const listItems = foundCart.map((el) => {
       return (<div>
-        {cart.map((el) => {
           <div class="row mx-auto" key={el.id} style={{ paddingBottom: "10px" }}>
             <div class="row main align-items-center">
               <div class="col-2">
@@ -744,9 +751,7 @@ function App() {
               </div>
             </div>
           </div>
-        })}
-      </div>);
-    };
+      </div>);});
 
     // include a list of the items purchased as well
     return (<div class="text-bg-dark">
@@ -780,7 +785,7 @@ function App() {
         <hr className="my-2 mx-1"
           style={{ borderTop: "1px solid lightgrey" }}
         ></hr>
-        {listItems(cart)}
+        {listItems}
       </div>
     </div>);
   }
