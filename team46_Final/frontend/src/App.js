@@ -813,21 +813,33 @@ function App() {
         </nav>
       </div>
 
-      <h2 class="text-bg-dark px-10 my-3">SE/COMS 319</h2>
+      <h2 class="text-bg-dark px-10 my-3">SE/ComS319 Construction of User Interfaces, Spring 2024</h2>
 
       <div class="d-flex justify-content-center">
         <div class="album py-5">
           <div class="container mx-auto">
             <div id="col" class="row row-cols-1 row-cols-sm-2 g-4">
-              <div class="card shadow-sm bg-dark">
+            <div class="card shadow-sm bg-dark">
                 <div class="card-body">
-                  <h5 class="card-title text-white">Sam Craft</h5>
-                  <p class="card-text text-white">Sophomore studying Software Engineering.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                  </div>
-                  <img class="card-img-top card-img-bottom" src="IMG_3992.jpeg" alt="Picture of Sam" />
+                  <h5 class="card-title text-white">Dr. Abraham N. Aldaco Gastelum</h5>
+                  <p class="card-text text-white">aaldaco@iastate.edu</p>
                 </div>
               </div>
+              <div class="card shadow-sm bg-dark">
+                <div class="card-body">
+                  <h5 class="card-title text-white">Dr. Ali Jannesari</h5>
+                  <p class="card-text text-white">jannesar@iastate.edu</p>
+                </div>
+              </div>
+              <div class="card shadow-sm bg-dark">
+                  <div class="card-body">
+                    <h5 class="card-title text-white">Sam Craft</h5>
+                    <p class="card-text text-white">Sophomore studying Software Engineering.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                    <img class="card-img-top card-img-bottom" src="IMG_3992.jpeg" alt="Picture of Sam"/>
+                  </div>
+                </div>
               <div class="card shadow-sm bg-dark">
                 <div class="card-body">
                   <h5 class="card-title text-white">Em Bradley-DeHaan</h5>
