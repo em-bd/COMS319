@@ -211,26 +211,3 @@ app.delete("/users/:id", async (req, res) => {
         res.status(500).send({ message : 'Internal Server Error' });
     }
 })
-
-// /**
-//  * GET id request:
-//  * Reads product with that specific id
-//  */
-// app.get("/:collection/:id", async (req, res) => {
-//     const productID = Number(req.params.id);
-//     const collection = String(req.params.collection);
-//     console.log("Product to find :", productID);
-
-//     await client.connect();
-//     console.log("Node connected successfully to GET-id MongoDB");
-//     const query = { "id": productID };
-//     const results = await db
-//         .collection(collection)
-//         .findOne(query);
-
-//     console.log("Results :", results);
-//     if (!results)
-//         res.send("Not found").status(404);
-//     else
-//         res.send(results).status(200);
-// });
